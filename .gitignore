@@ -2,3 +2,4 @@ vendor
 composer.lock
 .htaccess
 public/.htaccess
+public/assets/img

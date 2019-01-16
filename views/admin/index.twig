@@ -1,0 +1,52 @@
+{% extends "layout.twig" %}
+{% block content %}
+    <div id="content">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+            <div class="container-fluid">
+                <button id="sidebarCollapse" class="btn btn-info" type="button">
+                <i class="fas fa-align-left"></i>
+                <span>Opciones</span>
+                </button>
+            </div>
+        </nav>
+        <div class="table-user table-responsive-sm table-responsive-md table-responsive-lg">
+        <h3>Lista de usuarios</h3>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                <th scope="col">#</th>
+                <th scope="col">Cédula</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellidos</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Modificar</th>
+                <th scope="col">Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <th scope="row">1</th>
+                <td>1724449325</td>
+                <td>Josué Ricardo</td>
+                <td>Cando Obaco</td>
+                <td>josue.cando@epn.edu.ec</td>
+                <td>Activo</td>
+                <td><a class="btn btn-outline-primary" href=""><i class="fas fa-user-edit"></i></a></td>
+                <td><a class="btn btn-outline-danger"  data-toggle="modal"  data-target="#deleteUser" href=""><i class="fas fa-user-minus"></i></a></td>
+                </tr>
+                <tr>
+                <th scope="row">2</th>
+                <td>1724449325</td>
+                <td>Josué Ricardo</td>
+                <td>Cando Obaco</td>
+                <td>josue.cando@epn.edu.ec</td>
+                <td>Activo</td>
+                <td><a class="btn btn-outline-primary" href=""><i class="fas fa-user-edit"></i></a></td>
+                <td><a class="btn btn-outline-danger"  data-toggle="modal"  data-target="#deleteUser" href=""><i class="fas fa-user-minus"></i></a></td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

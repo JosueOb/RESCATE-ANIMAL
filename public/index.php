@@ -20,13 +20,14 @@ $request = Zend\Diactoros\ServerRequestFactory::fromGlobals(
     $_COOKIE,
     $_FILES
 );
-// var_dump($request->getUri()->getPath());
 
 //Aura Router
 $routerContainer = new RouterContainer();
 $map = $routerContainer->getMap();
-$map->get('visitorIndex','/','../views/admin/layout.twig');
-$map->get('visitorStyle','/styles.css','../views/assets/css/styles.css');
+$map->get('adminIndex','/',[
+    'controller'=>'App\Controllers\AdminController',
+    'action'=>'getAdminIndex'
+]);
 
 $matcher = $routerContainer->getMatcher();
 $route = $matcher->match($request);
@@ -34,6 +35,13 @@ $route = $matcher->match($request);
 if(!$route){
     echo 'Entrada no válida';
 }else{
-    // var_dump($route->handler);
-    require $route->handler;
+    $handlerData = $route->handler;
+    $controllerName = $handlerData['controller'];
+    $actionName = $handlerData['action'];
+
+    $controller = new $controllerName;
+    // $controller->$actionName($request);
+    $response = $controller->$actionName($request);
+
+    echo $response->getBody();//se imprime la respuesta HTML
 }

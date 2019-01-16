@@ -1,15 +1,6 @@
 {% extends "layout.twig" %}
 {% block content %}
-    <div id="content">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-            <div class="container-fluid">
-                <button id="sidebarCollapse" class="btn btn-info" type="button">
-                <i class="fas fa-align-left"></i>
-                <span>Opciones</span>
-                </button>
-            </div>
-        </nav>
-        <div class="table-user table-responsive-sm table-responsive-md table-responsive-lg">
+    <div class="table-user table-responsive-sm table-responsive-md table-responsive-lg">
         <h3>Lista de usuarios</h3>
         <table class="table table-hover">
             <thead>
@@ -46,7 +37,6 @@
                 <td><a class="btn btn-outline-danger"  data-toggle="modal"  data-target="#deleteUser" href=""><i class="fas fa-user-minus"></i></a></td>
                 </tr>
             </tbody>
-            </table>
-        </div>
+        </table>
     </div>
 {% endblock %}

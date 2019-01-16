@@ -56,9 +56,19 @@
         <!-- /Sidebar -->
 
         <!-- Page Content -->
-        {% block content %}
 
-        {% endblock %}
+        <div id="content">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+                <div class="container-fluid">
+                    <button id="sidebarCollapse" class="btn btn-info" type="button">
+                    <i class="fas fa-align-left"></i>
+                    <span>Opciones</span>
+                    </button>
+                </div>
+            </nav>
+            {% block content %}{% endblock %}
+        </div>
+
         <!-- /Page Content -->
 
     </div>

@@ -24,14 +24,22 @@ $request = Zend\Diactoros\ServerRequestFactory::fromGlobals(
 //Aura Router
 $routerContainer = new RouterContainer();
 $map = $routerContainer->getMap();
+// Rutas del visitante
 $map->get('visitorIndex','/',[
     'controller'=>'App\Controllers\VisitorController',
     'action'=>'getVisitorIndex'
 ]);
+
+// Rutas del administrador
 $map->get('adminIndex','/admin',[
     'controller'=>'App\Controllers\AdminController',
     'action'=>'getAdminIndex'
 ]);
+$map->get('loginIndex','/login',[
+    'controller'=>'App\Controllers\AccessController',
+    'action'=>'getLogin'
+]);
+
 
 $matcher = $routerContainer->getMatcher();
 $route = $matcher->match($request);

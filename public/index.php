@@ -24,7 +24,11 @@ $request = Zend\Diactoros\ServerRequestFactory::fromGlobals(
 //Aura Router
 $routerContainer = new RouterContainer();
 $map = $routerContainer->getMap();
-$map->get('adminIndex','/',[
+$map->get('visitorIndex','/',[
+    'controller'=>'App\Controllers\VisitorController',
+    'action'=>'getVisitorIndex'
+]);
+$map->get('adminIndex','/admin',[
     'controller'=>'App\Controllers\AdminController',
     'action'=>'getAdminIndex'
 ]);
@@ -42,6 +46,5 @@ if(!$route){
     $controller = new $controllerName;
     // $controller->$actionName($request);
     $response = $controller->$actionName($request);
-
     echo $response->getBody();//se imprime la respuesta HTML
 }

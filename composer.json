@@ -5,6 +5,8 @@
         }
     },
     "require": {
-        "twig/twig": "^2.6"
+        "twig/twig": "^2.6",
+        "zendframework/zend-diactoros": "^2.1",
+        "aura/router": "^3.1"
     }
 }

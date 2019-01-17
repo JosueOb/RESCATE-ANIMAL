@@ -17,13 +17,20 @@
     <div id="login">
         <div class="container text-center mt-2">
             <h1>Login</h1>
+            {% if responseMessage %}
+                <div class="alert alert-danger" role="alert" style=''>
+                    {{ responseMessage }}
+                </div>
+            {% endif %}
+            
+             
             <div class="row">
-                <form>
+                <form action='/auth' method='POST'>
                     <div class="form-group">
                       <label for="email" >Correo Electrónico</label>
-                      <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Ingrese su correo">
+                      <input type="email" class="form-control" id="email" name='userEmail' aria-describedby="emailHelp" placeholder="Ingrese su correo">
                       <label for="pass" >Contraseña</label>
-                      <input type="password" class="form-control" id="pass" placeholder="Ingrese su contaseña">
+                      <input type="password" class="form-control" id="pass" name='userPass' placeholder="Ingrese su contaseña">
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
                   </form>

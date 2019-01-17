@@ -3,6 +3,7 @@
 ini_set('display_errors',1);
 ini_set('display_starup_errors',1);
 error_reporting(E_ALL);
+session_start();
 
 //Archivos requeridos
 require_once '../vendor/autoload.php';
@@ -57,7 +58,7 @@ $map->get('adminIndex','/admin',[
     'auth'=>true
 ]);
 
-
+//Rutas de autenticación
 $map->get('loginIndex','/login',[
     'controller'=>'App\Controllers\AccessController',
     'action'=>'getLogin'
@@ -65,6 +66,10 @@ $map->get('loginIndex','/login',[
 $map->get('logout','/logout',[
     'controller'=>'App\Controllers\AccessController',
     'action'=>'getLogout'
+]);
+$map->post('auth','/auth',[
+    'controller'=>'App\Controllers\AccessController',
+    'action'=>'postLogin'
 ]);
 
 
@@ -76,8 +81,8 @@ if(!$route){
 }else{
     $handlerData = $route->handler;
     $needsAuth = $handlerData['auth'] ?? false;
-
-    if($needsAuth){
+    $sessionUser = $_SESSION['user'] ?? null;
+    if($needsAuth && !$sessionUser){
         $controllerName = 'App\Controllers\AccessController';
         $actionName = 'getLogout';
         

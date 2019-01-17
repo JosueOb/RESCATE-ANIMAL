@@ -10,6 +10,10 @@ class AccessController extends BaseController{
     }
 
     public function getLogin(){
-        return $this->renderHTML('login.html');
+        return $this->renderHTML('login.twig');
     }
+    public function getLogout(){
+        return $this->redirectResponse('/login');
+    }
+
 }

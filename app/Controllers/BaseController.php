@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 use Zend\Diactoros\Response\HtmlResponse;
+use Zend\Diactoros\Response\RedirectResponse;
 
 class BaseController{
     protected $templateEngine;//para utilizarla en las funciones de esta clase
@@ -17,5 +18,8 @@ class BaseController{
     public function renderHTML($fileName,$data = []){
         // return $this->templateEngine->render($fileName,$data);
         return new HtmlResponse($this->templateEngine->render($fileName,$data));
+    }
+    public function redirectResponse($redirectName){
+        return new RedirectResponse($redirectName);
     }
 }

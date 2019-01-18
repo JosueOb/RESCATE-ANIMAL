@@ -9,8 +9,15 @@ class AdminController extends BaseController{
         parent::__construct();
     }
     public function getAdminIndex(){
-        // echo $this->renderHTML('admin/layout.twig');
-        // echo $this->renderHTML('admin/layout.twig');
-        return $this->renderHTML('index.twig');
+        // $user = $_SESSION['user']['userType'];
+        // var_dump($user);
+        // die;
+        if($_SESSION['user']['userType'] == 'Admin'){
+            return $this->renderHTML('index.twig');
+        }else{
+            echo 'No eres admin';
+            die;
+        }
+        // return $this->renderHTML('index.twig');
     }
 }

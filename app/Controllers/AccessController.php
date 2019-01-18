@@ -22,12 +22,16 @@ class AccessController extends BaseController{
         $responseMessage = null;
         $user = User::where('userEmail',$postData['userEmail'])->first();
         if($user){
-            // $responseMessage='Coincide correo';
             if(\password_verify($postData['userPass'], $user->userPassword)){
-                // $responseMessage='Coincide Contrasenia';
-                // return new RedirectResponse('/admin');
-                $_SESSION['user']=$user->userId;
-                return $this->redirectResponse('/admin');
+                $_SESSION['user']= $user->getAttributes();
+                // var_dump($user->getAttributes());
+                if($user->userType == 'Admin'){
+                    return $this->redirectResponse('/admin');
+                    
+                }elseif($user->userType == 'User'){
+                    $responseMessage= 'User';
+                    // return $this->redirectResponse('/user');
+                }
                 
             }else{
                 $responseMessage='Datos Incorrectos';

@@ -62,6 +62,11 @@ $map->get('addUser','/user/add',[
     'action'=>'getUserAdd',
     'auth'=>true
 ]);
+$map->post('postAddUser','/user/add',[
+    'controller'=>'App\Controllers\AdminController',
+    'action'=>'getUserAdd',
+    'auth'=>true
+]);
 
 
 //Rutas de autenticación

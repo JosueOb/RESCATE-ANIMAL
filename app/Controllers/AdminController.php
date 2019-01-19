@@ -13,8 +13,12 @@ class AdminController extends BaseController{
         // $user = $_SESSION['user']['userType'];
         // var_dump($user);
         // die;
+        
         if($_SESSION['user']['userType'] == 'Admin'){
-            return $this->renderHTML('index.twig');
+            $listUser = User::where('userType','User')->where('userStatus',true)->get();
+            return $this->renderHTML('index.twig',[
+                'listUser'=>$listUser
+            ]);
         }else{
             echo 'No eres admin';
             die;
@@ -22,38 +26,56 @@ class AdminController extends BaseController{
         // return $this->renderHTML('index.twig');
     }
     public function getUserAdd($request){
-        $responseMessage =null;
+        if($_SESSION['user']['userType'] == 'Admin'){
+            $responseMessage =null;
 
-        if($request->getMethod() == 'POST'){
-            $postData = $request->getParsedBody();
+            if($request->getMethod() == 'POST'){
+                $postData = $request->getParsedBody();
 
-            //validar campo que se reciben 
-            //**********/
+                //validar campo que se reciben 
+                //**********/
 
-            //excepcion
-            try {
-                $user = new User();
-                $user->userName = $postData['userNombre'];
-                $user->userLastName = $postData['userApellido'];
-                $user->userEmail = $postData['userCorreo'];
-                $user->userCedula = $postData['userCedula'];
-                $user->userPhoto = 'userlogo.png';
-                $user->userPhone = $postData['userTelefono'];
-                $user->userPassword = \password_hash($postData['userContrasenia'],PASSWORD_DEFAULT);
-                $user->userStatus = true;
-                $user->userType = 'User';
-                $user->save();
-                $responseMessage = 'Usuario Registrado exitosamente';
-                
-            } catch (\Exception $e) {
-                $responseMessage  = $e->getMessage();
+                //excepcion
+                try {
+                    $user = new User();
+                    $user->userName = $postData['userNombre'];
+                    $user->userLastName = $postData['userApellido'];
+                    $user->userEmail = $postData['userCorreo'];
+                    $user->userCedula = $postData['userCedula'];
+                    $user->userPhoto = 'userlogo.png';
+                    $user->userPhone = $postData['userTelefono'];
+                    $user->userPassword = \password_hash($postData['userContrasenia'],PASSWORD_DEFAULT);
+                    $user->userStatus = true;
+                    $user->userType = 'User';
+                    $user->save();
+                    $responseMessage = 'Usuario Registrado exitosamente';
+                    
+                } catch (\Exception $e) {
+                    $responseMessage  = $e->getMessage();
+                }
             }
-        }
-        // echo 'Agregar Usuario';
-        // die;
-        return $this->renderHTML('addUser.twig',[
-            'responseMessage'=>$responseMessage
-        ]);
+            // echo 'Agregar Usuario';
+            // die;
+            return $this->renderHTML('addUser.twig',[
+                'responseMessage'=>$responseMessage
+            ]);
 
+        }else{
+            echo 'No eres admin';
+            die;
+        }
     }
+
+    public function getLogUser(){
+        if($_SESSION['user']['userType'] == 'Admin'){
+            $listUser = User::where('userType','User')->get();
+            return $this->renderHTML('index.twig',[
+                'listUser'=>$listUser
+            ]);
+        }else{
+            echo 'No eres admin';
+            die;
+        }
+    }
+    
 }

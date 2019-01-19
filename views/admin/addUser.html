@@ -66,7 +66,51 @@
                     </button>
                 </div>
             </nav>
-            {% block content %}{% endblock %}
+
+            <!--Formulario de registro de usuerio-->
+            <div class="container">
+                <h3>Registrar Usuario</h3>
+                <form autocomplete="off">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="userNombre">Nombre</label>
+                            <input type="text" class="form-control" id="userNombre" placeholder="Nombre" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="userApellido">Apellidos</label>
+                            <input type="text" class="form-control" id="userApellido" placeholder="Apellidos" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="userCedula"># Cédula</label>
+                            <input type="text" class="form-control" id="userCedula" placeholder="Cédula" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="userTelefono"># Teléfono/Celular</label>
+                            <input type="tel" class="form-control" id="userTelefono" placeholder="Teléfono o celular" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="userCorreo">Correo Electrónico</label>
+                        <input type="email" class="form-control" id="userCorreo" placeholder="Correo electrónico" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="userContrasenia">Contraseña</label>
+                            <input type="password" class="form-control" id="userContrasenia" placeholder="Contraseña" autocomplete="new-password" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="userContraseniaConfirm">Confirmar contrasenia</label>
+                            <input type="password" class="form-control" id="userContraseniaConfirm" placeholder="Confirma contraseña" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-dark btn-lg btn-block mt-3">Registrar</button>
+                </form>
+            </div>
+
+
+            <!--/Formulario de registro de usuerio-->
         </div>
 
         <!-- /Page Content -->

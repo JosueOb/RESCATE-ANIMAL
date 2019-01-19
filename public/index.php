@@ -57,6 +57,12 @@ $map->get('adminIndex','/admin',[
     'action'=>'getAdminIndex',
     'auth'=>true
 ]);
+$map->get('addUser','/user/add',[
+    'controller'=>'App\Controllers\AdminController',
+    'action'=>'getUserAdd',
+    'auth'=>true
+]);
+
 
 //Rutas de autenticación
 $map->get('loginIndex','/login',[

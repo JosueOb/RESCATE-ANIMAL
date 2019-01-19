@@ -20,4 +20,10 @@ class AdminController extends BaseController{
         }
         // return $this->renderHTML('index.twig');
     }
+    public function getUserAdd(){
+
+        // echo 'Agregar Usuario';
+        // die;
+        return $this->renderHTML('addUser.html');
+    }
 }

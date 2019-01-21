@@ -65,11 +65,73 @@ class AdminController extends BaseController{
             die;
         }
     }
+    
+    public function getDeleteUser($request){
+        // echo 'Eliminar usuario';
+        // var_dump($request->getAttributes());
+        $attributes = $request->getAttributes();
+        $userId = $attributes['userId'];
+        $userDelete = User::find($userId);
+        $userDelete->userStatus = false;
+        $userDelete->save();
+        // $userDelete->delete();
+        return $this->redirectResponse('/admin');
+    }
+    public function getUpdateUser($request){
+       
+        if($_SESSION['user']['userType'] == 'Admin'){
+            $responseMessage =null;
+            $attributes = $request->getAttributes();
+            $userId = $attributes['userId'];
+            $userUpdate = User::find($userId);
+
+            if($request->getMethod() == 'POST'){
+                $postData = $request->getParsedBody();
+                // var_dump($postData);
+                // die;
+                //validar campo que se reciben 
+                //**********/
+
+                //excepcion
+                try {
+                    $userUpdate->userName = $postData['userNombre'];
+                    $userUpdate->userLastName = $postData['userApellido'];
+                    $userUpdate->userEmail = $postData['userCorreo'];
+                    $userUpdate->userCedula = $postData['userCedula'];
+                    $userUpdate->userPhone = $postData['userTelefono'];
+                    // $userUpdate->userPassword = \password_hash($postData['userContrasenia'],PASSWORD_DEFAULT);
+                    if($postData['userEstado']=='activo'){
+                        $userUpdate->userStatus = true;
+                    }elseif($postData['userEstado']=='inactivo'){
+                        $userUpdate->userStatus = false;
+                    }else{
+                        $responseMessage ='* Estado de usuario inválido ';
+                    }
+                    $responseMessage .= 'Usuario Actualizado exitosamente';
+                    $userUpdate->save();
+                    
+                } catch (\Exception $e) {
+                    $responseMessage  = $e->getMessage();
+                }
+            }
+
+            return $this->renderHTML('updateUser.twig',[
+                'responseMessage'=>$responseMessage,
+                'userUpdate'=>$userUpdate
+            ]);
+
+        }else{
+            echo 'No eres admin';
+            die;
+        }
+
+
+    }
 
     public function getLogUser(){
         if($_SESSION['user']['userType'] == 'Admin'){
             $listUser = User::where('userType','User')->get();
-            return $this->renderHTML('index.twig',[
+            return $this->renderHTML('logUser.twig',[
                 'listUser'=>$listUser
             ]);
         }else{

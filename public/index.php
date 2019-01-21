@@ -72,6 +72,21 @@ $map->get('logUser','/user/log',[
     'action'=>'getLogUser',
     'auth'=>true
 ]);
+$map->get('deleteUser','/user/delete/{userId}',[
+    'controller'=>'App\Controllers\AdminController',
+    'action'=>'getDeleteUser',
+    'auth'=>true
+]);
+$map->get('getUpdateUser','/user/update/{userId}',[
+    'controller'=>'App\Controllers\AdminController',
+    'action'=>'getUpdateUser',
+    'auth'=>true
+]);
+$map->post('postUpdateUser','/user/update/{userId}',[
+    'controller'=>'App\Controllers\AdminController',
+    'action'=>'getUpdateUser',
+    'auth'=>true
+]);
 
 //Rutas de autenticación
 $map->get('loginIndex','/login',[
@@ -104,6 +119,11 @@ if(!$route){
     }else{
         $controllerName = $handlerData['controller'];
         $actionName = $handlerData['action'];
+    }
+
+    // add route attributes to the request
+    foreach ($route->attributes as $key => $val) {
+        $request = $request->withAttribute($key, $val);
     }
 
     $controller = new $controllerName;

@@ -7,7 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <link rel="stylesheet" href="../assets/css/styles-admin.css">
+    {% block styleAdmin %}<link rel="stylesheet" href="../assets/css/styles-admin.css">{% endblock %}
 
     <!-- Font Awesome JS -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
@@ -20,10 +20,12 @@
 
         <!-- Sidebar -->
         <nav id="sidebar">
+        
             <div class="sidebar-header">
-                <img src="../assets/img/userlogo.png" alt="">
+                {% block imgAdmin %}<img src="../assets/img/userlogo.png" alt="">{% endblock %}
                 <h3>Admin Dashboard</h3>
             </div>
+
             <ul class="list-unstyled components">
             <li>
                 <a href="/admin">
@@ -74,27 +76,7 @@
     </div>
     <!-- /Wrapper -->
 
-        <!--Modals-->
-    <div class="modal fade" id="deleteUser" tabindex="-1" role="dialog" aria-labelledby="deleteUser" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Eliminar</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                Está seguro de eliminar este registro?
-            </div>
-            <div class="modal-footer">
-                <a class="btn btn-danger" href="#">Eliminar</a>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-            </div>
-            </div>
-        </div>
-    </div>
-            <!--/Modals-->
+
 
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -103,6 +85,7 @@
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     <!-- JS Custom-->
-    <script src="../assets/js/sidebar.js"></script>
+    {% block javaScriptAdmin %}<script src="../assets/js/sidebar.js"></script>{% endblock %}
+    
 </body>
 </html>

@@ -127,7 +127,35 @@ class AdminController extends BaseController{
 
 
     }
+    public function getChangePassUser($request){
+        // echo 'cambiar contrasenia user';
+        // var_dump($request->getAttributes());
+        $responseMessage=null;
+        $attributes = $request->getAttributes();
+        $userId = $attributes['userId'];
+        $user= User::find($userId);
+        if($request->getMethod() == 'POST'){
+            $postData = $request->getParsedBody();
+            // var_dump($postData);
+            // die;
+            if(!empty($postData['userContrasenia']) && !empty($postData['userContraseniaConfirm'])){
+                if($postData['userContrasenia'] == $postData['userContraseniaConfirm']){
+                    $user->userPassword = \password_hash($postData['userContrasenia'],PASSWORD_DEFAULT);
+                    $user->save();
+                    $responseMessage='Cambio de contrasenia exitoso';
+                }else{
+                    $responseMessage='Las contrasenias no coinciden';
+                }
+            }else{
+                $responseMessage = 'Ingrese la contrasenia';
+            }
+        }
+        return $this->renderHTML('passUser.twig',[
+            'userUpdate'=>$user,
+            'responseMessage'=>$responseMessage
+        ]);
 
+    }
     public function getLogUser(){
         if($_SESSION['user']['userType'] == 'Admin'){
             $listUser = User::where('userType','User')->get();

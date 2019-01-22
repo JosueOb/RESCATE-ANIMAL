@@ -88,6 +88,18 @@ $map->post('postUpdateUser','/user/update/{userId}',[
     'auth'=>true
 ]);
 
+$map->get('changePassUser','/user/changePass/{userId}',[
+    'controller'=>'App\Controllers\AdminController',
+    'action'=>'getChangePassUser',
+    'auth'=>true
+]);
+$map->post('postChangePassUser','/user/changePass/{userId}',[
+    'controller'=>'App\Controllers\AdminController',
+    'action'=>'getChangePassUser',
+    'auth'=>true
+]);
+
+
 //Rutas de autenticación
 $map->get('loginIndex','/login',[
     'controller'=>'App\Controllers\AccessController',

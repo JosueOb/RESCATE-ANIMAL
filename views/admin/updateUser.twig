@@ -37,16 +37,7 @@
                 <label for="userCorreo">Correo Electrónico</label>
                 <input type="email" class="form-control" id="userCorreo" name='userCorreo' value="{{userUpdate.userEmail}}" placeholder="Correo electrónico">
             </div>
-            {# <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="userContrasenia">Contraseña</label>
-                    <input type="password" class="form-control" id="userContrasenia" name='userContrasenia' value="{{userUpdate.userPassword}}" placeholder="Contraseña" autocomplete="new-password">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="userContraseniaConfirm">Confirmar contrasenia</label>
-                    <input type="password" class="form-control" id="userContraseniaConfirm" value="{{userUpdate.userPassword}}" placeholder="Confirma contraseña">
-                </div>
-            </div> #}
+            
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <label class="input-group-text" for="userEstado">Estado</label>
@@ -61,7 +52,7 @@
                 {% endif %}
                 </select>
             </div>
-             <a class="btn btn-warning btn-lg btn-block mt-3" href="/passChange"><i class="fas fa-list-ul"></i>Cambiar Contraseña</a>
+             <a class="btn btn-warning btn-lg btn-block mt-3" href="/user/changePass/{{userUpdate.userId}}"><i class="fas fa-list-ul"></i>Cambiar Contraseña</a>
             <button type="submit" class="btn btn-dark btn-lg btn-block mt-3">Actualizar</button>
         </form>
     </div>

@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 use App\Models\User;
+use Respect\Validation\Validator as v;
+use Respect\Validation\Exceptions\NestedValidationException;
 
 class AdminController extends BaseController{
     // protected $viewPath='../views/admin';
@@ -23,20 +25,29 @@ class AdminController extends BaseController{
             echo 'No eres admin';
             die;
         }
-        // return $this->renderHTML('index.twig');
     }
     public function getUserAdd($request){
         if($_SESSION['user']['userType'] == 'Admin'){
             $responseMessage =null;
+            $errorsMessage = null;
 
             if($request->getMethod() == 'POST'){
                 $postData = $request->getParsedBody();
 
+                // var_dump($postData);
+                // die;
                 //validar campo que se reciben 
-                //**********/
+                $userValidator = v::key('userNombre', v::stringType()->notEmpty())
+                                ->key('userApellido', v::stringType()->notEmpty())
+                                ->key('userCedula', v::intVal()->notEmpty())
+                                ->key('userTelefono', v::intVal()->notEmpty())
+                                ->key('userCorreo', v::stringType()->notEmpty())
+                                ->key('userContrasenia', v::stringType()->notEmpty())
+                                ->key('userContraseniaConfirm', v::stringType()->notEmpty());
 
                 //excepcion
                 try {
+                    $userValidator->assert($postData);
                     $user = new User();
                     $user->userName = $postData['userNombre'];
                     $user->userLastName = $postData['userApellido'];
@@ -50,14 +61,24 @@ class AdminController extends BaseController{
                     $user->save();
                     $responseMessage = 'Usuario Registrado exitosamente';
                     
-                } catch (\Exception $e) {
-                    $responseMessage  = $e->getMessage();
+                } catch (NestedValidationException $exception) {
+                    // $responseMessage  = $e->getMessage();
+                    $exception->findMessages([
+                        'stringType' => '{{name}} debe ser un texto',
+                        'intVal' => '{{name}} debe ser un valor numérico',
+                        'notEmpty' => '{{name}} no debe estar vacío'
+                    ]);
+                    // $errorsMessage = $errors;
+                    $errorsMessage = $exception->getMessages();
+                    // var_dump($exception->getMessages());
+                    // die;
                 }
             }
             // echo 'Agregar Usuario';
             // die;
             return $this->renderHTML('addUser.twig',[
-                'responseMessage'=>$responseMessage
+                'responseMessage'=>$responseMessage,
+                'errorsMessage'=>$errorsMessage
             ]);
 
         }else{

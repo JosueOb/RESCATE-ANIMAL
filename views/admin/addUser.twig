@@ -7,7 +7,14 @@
                 <div class="alert alert-danger" role="alert" style=''>
                     {{ responseMessage }}
                 </div>
-            {% endif %}
+        {% endif %}
+        {% if errorsMessage %}
+            <div class="alert alert-danger" role="alert" style=''>
+            {% for error in errorsMessage %}
+                {{ error }} <br>
+            {% endfor %}
+            </div>
+        {% endif %}
 
         <h3>Registrar Usuario</h3>
         <form action='/user/add' autocomplete="off" method='POST'>
@@ -42,7 +49,7 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label for="userContraseniaConfirm">Confirmar contrasenia</label>
-                    <input type="password" class="form-control" id="userContraseniaConfirm" placeholder="Confirma contraseña">
+                    <input type="password" class="form-control" id="userContraseniaConfirm" name='userContraseniaConfirm' placeholder="Confirma contraseña">
                 </div>
             </div>
             <button type="submit" class="btn btn-dark btn-lg btn-block mt-3">Registrar</button>

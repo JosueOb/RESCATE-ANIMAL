@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 use App\Models\User;
+use Respect\Validation\Validator as v;
+use Respect\Validation\Exceptions\NestedValidationException;
 
 //Se define esta clase para acceder a la sistema
 class AccessController extends BaseController{
@@ -23,39 +25,41 @@ class AccessController extends BaseController{
         $userEmail = $postData['userEmail'];
         $userPass = $postData['userPass'];
         $responseMessage = null;
-        
-        if(!empty($userEmail) && !empty($userPass)){
-            if(filter_var($userEmail, FILTER_VALIDATE_EMAIL)){
-                $user = User::where('userEmail',$userEmail)->first();
-                if($user){
-                    if(\password_verify($userPass, $user->userPassword)){
-                        $_SESSION['user']= $user->getAttributes();
-                        // var_dump($user->getAttributes());
-                        if($user->userType == 'Admin'){
-                            return $this->redirectResponse('/admin');
-                            
-                        }elseif($user->userType == 'User'){
-                            $responseMessage= 'User';
-                            // return $this->redirectResponse('/user');
+
+        if(v::stringType()->notEmpty()->validate($userEmail)){
+            if(v::email()->validate($userEmail)){
+                if(v::stringType()->notEmpty()->validate($userPass)){
+                    $user = User::where('userEmail',$userEmail)->first();
+                    if($user){
+                        if(\password_verify($userPass, $user->userPassword)){
+                            $_SESSION['user']= $user->getAttributes();
+                            // var_dump($user->getAttributes());
+                            if($user->userType == 'Admin'){
+                                return $this->redirectResponse('/admin');
+                                
+                            }elseif($user->userType == 'User'){
+                                $responseMessage= 'User';
+                                // return $this->redirectResponse('/user');
+                            }
+                        }else{
+                            $responseMessage='Datos Incorrectos';
                         }
-                        
                     }else{
                         $responseMessage='Datos Incorrectos';
                     }
                 }else{
-                    $responseMessage='Datos Incorrectos';
+                    $responseMessage='* Ingrese su contraseña';
                 }
             }else{
-                $responseMessage = 'Formato del correo incorrecto';
+                $responseMessage ='* Formato del correo inválido';
             }
         }else{
-            $responseMessage = 'Ingrese todos los campos';
+            $responseMessage = '* Ingrese su correo';
         }
 
-        // var_dump($errorsMesssage);
-        // die;
+
         return $this->renderHTML('login.twig',[
-            'responseMessage'=>$responseMessage,
+            'responseMessage'=>$responseMessage
         ]);
 
     }

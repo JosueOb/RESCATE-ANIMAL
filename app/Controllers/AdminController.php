@@ -33,10 +33,24 @@ class AdminController extends BaseController{
 
             if($request->getMethod() == 'POST'){
                 $postData = $request->getParsedBody();
-
+                $userNombre = $postData['userNombre'];
+                $userApellido = $postData['userApellido'];
+                $userCedula = $postData['userCedula'];
+                $userTelefono = $postData['userTelefono'];
+                $userCorreo = $postData['userCorreo'];
+                $userContrasenia = $postData['userContrasenia'];
+                $userContraseniaConfirm = $postData['userContraseniaConfirm'];
+             
                 // var_dump($postData);
                 // die;
                 //validar campo que se reciben 
+                var_dump($postData);
+                if(v::arrayVal()->each(v::notEmpty())->validate($postData)){
+                    echo 'Todos los campos estan llenos';
+                }else{
+                    echo 'Ingrese todos los campos';
+                }
+                die;
                 $userValidator = v::key('userNombre', v::stringType()->notEmpty())
                                 ->key('userApellido', v::stringType()->notEmpty())
                                 ->key('userCedula', v::intVal()->notEmpty())

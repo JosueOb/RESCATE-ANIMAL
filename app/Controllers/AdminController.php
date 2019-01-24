@@ -41,23 +41,13 @@ class AdminController extends BaseController{
                 $userContrasenia = $postData['userContrasenia'];
                 $userContraseniaConfirm = $postData['userContraseniaConfirm'];
              
-                // var_dump($postData);
-                // die;
-                //validar campo que se reciben 
-                var_dump($postData);
-                if(v::arrayVal()->each(v::notEmpty())->validate($postData)){
-                    echo 'Todos los campos estan llenos';
-                }else{
-                    echo 'Ingrese todos los campos';
-                }
-                die;
-                $userValidator = v::key('userNombre', v::stringType()->notEmpty())
-                                ->key('userApellido', v::stringType()->notEmpty())
-                                ->key('userCedula', v::intVal()->notEmpty())
-                                ->key('userTelefono', v::intVal()->notEmpty())
-                                ->key('userCorreo', v::stringType()->notEmpty())
-                                ->key('userContrasenia', v::stringType()->notEmpty())
-                                ->key('userContraseniaConfirm', v::stringType()->notEmpty());
+                $userValidator = v::key('userNombre', v::stringType()->notEmpty()->length(3,25))
+                                ->key('userApellido', v::stringType()->notEmpty()->length(3,25))
+                                ->key('userCedula', v::digit()->notEmpty()->length(10,10))
+                                ->key('userTelefono', v::digit()->notEmpty()->length(7,10))
+                                ->key('userCorreo', v::stringType()->notEmpty()->email())
+                                ->key('userContrasenia', v::stringType()->notEmpty()->length(4,20))
+                                ->key('userContraseniaConfirm', v::stringType()->notEmpty()->equals($userContraseniaConfirm));
 
                 //excepcion
                 try {
@@ -76,16 +66,7 @@ class AdminController extends BaseController{
                     $responseMessage = 'Usuario Registrado exitosamente';
                     
                 } catch (NestedValidationException $exception) {
-                    // $responseMessage  = $e->getMessage();
-                    $exception->findMessages([
-                        'stringType' => '{{name}} debe ser un texto',
-                        'intVal' => '{{name}} debe ser un valor numérico',
-                        'notEmpty' => '{{name}} no debe estar vacío'
-                    ]);
-                    // $errorsMessage = $errors;
                     $errorsMessage = $exception->getMessages();
-                    // var_dump($exception->getMessages());
-                    // die;
                 }
             }
             // echo 'Agregar Usuario';

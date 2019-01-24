@@ -31,7 +31,8 @@ $(document).ready(function(){
             },
             userContrasenia:{
                 required:true,
-                minlength:4
+                minlength:4,
+                maxlength:20
             },
             userContraseniaConfirm:{
                 required:true,
@@ -67,7 +68,8 @@ $(document).ready(function(){
             },
             userContrasenia:{
                 required:'* Ingrese la contraseña',
-                minlength:'* Ingrese más de 4 caracteres'
+                minlength:'* Ingrese más de 4 caracteres',
+                maxlength:'* Fuera del rango permitido'
             },
             userContraseniaConfirm:{
                 required:'* Repita la contraseña',

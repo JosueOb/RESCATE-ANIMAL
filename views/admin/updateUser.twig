@@ -6,13 +6,25 @@
     <div class="container">
 
         {% if responseMessage %}
-                <div class="alert alert-danger" role="alert" style=''>
-                    {{ responseMessage }}
-                </div>
-            {% endif %}
+            <div class="alert alert-success" role="alert" style=''>
+                {{ responseMessage }}
+            </div>
+        {% endif %}
+        {% if warningMessage %}
+            <div class="alert alert-warning" role="alert" style=''>
+                {{ warningMessage }}
+            </div>
+        {% endif %}
+        {% if errorsMessage %}
+            <div class="alert alert-danger" role="alert" style=''>
+            {% for error in errorsMessage %}
+                {{ error }} <br>
+            {% endfor %}
+            </div>
+        {% endif %}
 
         <h3>Actualizar Usuario</h3>
-        <form action='/user/update/{{userUpdate.userId}}' autocomplete="off" method='POST'>
+        <form action='/user/update/{{userUpdate.userId}}' id='formulario' autocomplete="off" method='POST'>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="userNombre">Nombre</label>
@@ -58,4 +70,7 @@
     </div>
     <!--/Formulario de actualización de usuario-->
 {% endblock %}
-{% block javaScriptAdmin %}<script src="../../assets/js/sidebar.js"></script>{% endblock %}
+{% block javaScriptAdmin %}
+<script src="../../assets/js/sidebar.js"></script>
+<script src="../../assets/js/form-update-user.js"></script>
+{% endblock %}

@@ -1,4 +1,4 @@
-// Validacion del formulario de registro
+// Validacion del formulario de actualizacion de registro
 $(document).ready(function(){
     $('#formulario').validate({
         rules:{
@@ -29,14 +29,8 @@ $(document).ready(function(){
                 required:true,
                 email:true
             },
-            userContrasenia:{
-                required:true,
-                minlength:4,
-                maxlength:20
-            },
-            userContraseniaConfirm:{
-                required:true,
-                equalTo:'#userContrasenia'
+            userEstado:{
+                required:true
             }
         },
         messages:{
@@ -66,14 +60,8 @@ $(document).ready(function(){
                 required:'* Ingrese el correo',
                 email:'* Formato del correo inválido'
             },
-            userContrasenia:{
-                required:'* Ingrese la contraseña',
-                minlength:'* Ingrese más de 4 caracteres',
-                maxlength:'* Fuera del rango permitido'
-            },
-            userContraseniaConfirm:{
-                required:'* Repita la contraseña',
-                equalTo:'* Las contraseñas no coinciden'
+            userEstado:{
+                required:'* Campo Obligatorio'
             }
         },
         submitHandler:function(form){

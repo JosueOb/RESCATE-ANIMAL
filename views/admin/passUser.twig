@@ -6,13 +6,20 @@
     <div class="container">
 
         {% if responseMessage %}
-                <div class="alert alert-danger" role="alert" style=''>
-                    {{ responseMessage }}
-                </div>
-            {% endif %}
+            <div class="alert alert-success" role="alert" style=''>
+                {{ responseMessage }}
+            </div>
+        {% endif %}
+        {% if errorsMessage %}
+            <div class="alert alert-danger" role="alert" style=''>
+            {% for error in errorsMessage %}
+                {{ error }} <br>
+            {% endfor %}
+            </div>
+        {% endif %}
 
         <h3>Cambiar Contraseña</h3>
-        <form action='/user/changePass/{{userUpdate.userId}}' autocomplete="off" method='POST'>
+        <form action='/user/changePass/{{userUpdate.userId}}' autocomplete="off" method='POST' id='formulario'>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="userContrasenia">Contraseña</label>
@@ -29,4 +36,7 @@
     </div>
     <!--/Formulario de actualización de usuario-->
 {% endblock %}
-{% block javaScriptAdmin %}<script src="../../assets/js/sidebar.js"></script>{% endblock %}
+{% block javaScriptAdmin %}
+<script src="../../assets/js/sidebar.js"></script>
+<script src="../../assets/js/form-changePass-user.js"></script>
+{% endblock %}

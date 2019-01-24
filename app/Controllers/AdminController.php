@@ -124,7 +124,7 @@ class AdminController extends BaseController{
                              ->key('userEstado', v::equals($getUserStatus));
 
                 if(!$userEdit->validate($postData)){
-                    echo 'El nombre del usuario a cambiado';
+                    // echo 'El nombre del usuario a cambiado';
                     $userValidator = v::key('userNombre', v::stringType()->notEmpty()->length(3,25))
                                     ->key('userApellido', v::stringType()->notEmpty()->length(3,25))
                                     ->key('userCedula', v::digit()->notEmpty()->length(10,10))

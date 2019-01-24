@@ -1,4 +1,4 @@
-// Validacion del formulario de registro
+// Validacion del formulario de cambio de contrasenia
 $(document).ready(function(){
     $('#formulario').validate({
         rules:{

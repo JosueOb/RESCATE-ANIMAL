@@ -98,7 +98,12 @@ $map->post('postChangePassUser','/user/changePass/{userId}',[
     'action'=>'getChangePassUser',
     'auth'=>true
 ]);
-
+//Rutas del usuario de la fundación
+$map->get('userIndex','/user',[
+    'controller'=>'App\Controllers\UserController',
+    'action'=>'getUserIndex',
+    'auth'=>true
+]);
 
 //Rutas de autenticación
 $map->get('loginIndex','/login',[

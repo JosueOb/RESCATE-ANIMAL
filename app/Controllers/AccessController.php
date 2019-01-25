@@ -38,9 +38,9 @@ class AccessController extends BaseController{
                     // var_dump($user->getAttributes());
                     if($user->userType == 'Admin'){
                         return $this->redirectResponse('/admin');
-                        
                     }elseif($user->userType == 'User'){
-                        $responseMessage= 'User';
+                        return $this->redirectResponse('/user');
+                        // $responseMessage= 'User';
                         // return $this->redirectResponse('/user');
                     }
                 }else{

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+use App\Models\Dog;
 
 class UserController extends BaseController{
     public function __construct(){
@@ -9,11 +10,10 @@ class UserController extends BaseController{
     }
     public function getUserIndex(){
         $user = $_SESSION['user'];
-        // \var_dump($user);
-        // echo "Bienvenido ".$user['userName'];
-        // die;
-        return $this->renderHTML('layout.twig',[
-            'user'=>$user
+        $listDogs = Dog::all();
+        return $this->renderHTML('index.twig',[
+            'user'=>$user,
+            'listDogs'=>$listDogs
         ]);
     }
 }

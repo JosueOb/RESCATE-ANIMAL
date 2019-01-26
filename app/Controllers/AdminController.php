@@ -13,10 +13,14 @@ class AdminController extends BaseController{
     }
     
     public function getAdminIndex(){
-        if($_SESSION['user']['userType'] == 'Admin'){
+
+        $userAdminSession = $_SESSION['user'];
+
+        if($userAdminSession['userType'] == 'Admin'){
             $listUser = User::where('userType','User')->where('userStatus',true)->get();
             return $this->renderHTML('index.twig',[
-                'listUser'=>$listUser
+                'listUser'=>$listUser,
+                'userAdmin'=>$userAdminSession
             ]);
         }else{
             echo 'No eres admin';
@@ -25,7 +29,9 @@ class AdminController extends BaseController{
     }
 
     public function getUserAdd($request){
-        if($_SESSION['user']['userType'] == 'Admin'){
+        $userAdminSession = $_SESSION['user'];
+
+        if($userAdminSession['userType'] == 'Admin'){
             $responseMessage =null;
             $errorsMessage = null;
 
@@ -71,6 +77,7 @@ class AdminController extends BaseController{
                 }
             }
             return $this->renderHTML('addUser.twig',[
+                'userAdmin'=>$userAdminSession,
                 'responseMessage'=>$responseMessage,
                 'errorsMessage'=>$errorsMessage
             ]);
@@ -82,7 +89,8 @@ class AdminController extends BaseController{
     }
     
     public function getDeleteUser($request){
-        if($_SESSION['user']['userType'] == 'Admin'){
+        $userAdminSession = $_SESSION['user'];
+        if($userAdminSession['userType'] == 'Admin'){
             $attributes = $request->getAttributes();
             $userId = $attributes['userId'];
             $userDelete = User::find($userId);
@@ -97,8 +105,8 @@ class AdminController extends BaseController{
     }
 
     public function getUpdateUser($request){
-       
-        if($_SESSION['user']['userType'] == 'Admin'){
+        $userAdminSession = $_SESSION['user'];
+        if($userAdminSession['userType'] == 'Admin'){
             $responseMessage = null;
             $errorsMessage = null;
             $warningMessage = null;
@@ -161,6 +169,7 @@ class AdminController extends BaseController{
             }
 
             return $this->renderHTML('updateUser.twig',[
+                'userAdmin'=>$userAdminSession,
                 'responseMessage'=>$responseMessage,
                 'userUpdate'=>$userUpdate,
                 'errorsMessage'=>$errorsMessage,
@@ -174,8 +183,8 @@ class AdminController extends BaseController{
     }
 
     public function getChangePassUser($request){
-
-        if($_SESSION['user']['userType'] == 'Admin'){
+        $userAdminSession = $_SESSION['user'];
+        if($userAdminSession['userType'] == 'Admin'){
 
             $responseMessage = null;
             $errorsMessage = null;
@@ -207,6 +216,7 @@ class AdminController extends BaseController{
                 }
             }
             return $this->renderHTML('passUser.twig',[
+                'userAdmin'=>$userAdminSession,
                 'userUpdate'=>$user,
                 'responseMessage'=>$responseMessage,
                 'errorsMessage'=>$errorsMessage
@@ -221,9 +231,11 @@ class AdminController extends BaseController{
     }
     //historial de usuarios registrados
     public function getLogUser(){
-        if($_SESSION['user']['userType'] == 'Admin'){
+        $userAdminSession = $_SESSION['user'];
+        if($userAdminSession['userType'] == 'Admin'){
             $listUser = User::where('userType','User')->get();
             return $this->renderHTML('logUser.twig',[
+                'userAdmin'=>$userAdminSession,
                 'listUser'=>$listUser
             ]);
         }else{

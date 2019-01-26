@@ -14,78 +14,93 @@ class UserController extends BaseController{
     }
 
     public function getUserIndex(){
-        $user = $_SESSION['user'];
-        $listDogs = Dog::all();
-        return $this->renderHTML('index.twig',[
-            'user'=>$user,
-            'listDogs'=>$listDogs
-        ]);
+
+        $userSession = $_SESSION['user'];
+
+        if($userSession['userType'] == 'User'){
+            $listDogs = Dog::all();
+            return $this->renderHTML('index.twig',[
+                'user'=>$userSession,
+                'listDogs'=>$listDogs
+            ]);
+        }else{
+            echo 'No eres User';
+            die;
+        }
     }
 
     public function getEditProfile($request){
-        $userSession = $_SESSION['user'];
-        $responseMessage = null;
-        $errorsMessage = null;
-        $warnigMessage = null;
-
-        if($request->getMethod() == 'POST'){
-
-            $postData = $request->getParsedBody();
-            $files = $request->getUploadedFiles();
-
-            $userTelefono = $postData['userTelefono'];
-            $userCorreo = $postData['userCorreo'];
-            $nombreImagen = 'userlogo.png';
-            $userId = $userSession['userId'];
-            $user = User::find($userId);
-            $userImagen = $files['userImagen'];
- 
-            $userEdit = v::key('userCorreo', v::equals($user->userEmail))
-                         ->key('userTelefono', v::equals($user->userPhone));
-
-            if(!$userEdit->validate($postData) || !empty($userImagen->getClientFilename())){
         
-                $userValidator = v::key('userTelefono', v::digit()->notEmpty()->length(7,10))
-                              ->key('userCorreo', v::stringType()->notEmpty()->email());
-                try {
-                    $userValidator->assert($postData);
+        $userSession = $_SESSION['user'];
 
-                    if($userImagen->getError() == UPLOAD_ERR_OK){
+        if($userSession['userType'] == 'User'){
 
-                        if($userImagen->getClientMediaType() == 'image/jpeg' || $userImagen->getClientMediaType() == 'imagen/png' || $userImagen->getClientMediaType() == 'imagen/jpg'){
-                            
-                            $nombreImagen = $userImagen->getClientFilename();
-                            $userImagen->moveTo("assets/img/$nombreImagen");
+            $responseMessage = null;
+            $errorsMessage = null;
+            $warnigMessage = null;
 
-                        }else{
-                            $warnigMessage = 'Formato incorrecto de la imagen';
+            if($request->getMethod() == 'POST'){
+
+                $postData = $request->getParsedBody();
+                $files = $request->getUploadedFiles();
+
+                $userTelefono = $postData['userTelefono'];
+                $userCorreo = $postData['userCorreo'];
+                $nombreImagen = 'userlogo.png';
+                $userId = $userSession['userId'];
+                $user = User::find($userId);
+                $userImagen = $files['userImagen'];
+    
+                $userEdit = v::key('userCorreo', v::equals($user->userEmail))
+                            ->key('userTelefono', v::equals($user->userPhone));
+
+                if(!$userEdit->validate($postData) || !empty($userImagen->getClientFilename())){
+            
+                    $userValidator = v::key('userTelefono', v::digit()->notEmpty()->length(7,10))
+                                ->key('userCorreo', v::stringType()->notEmpty()->email());
+                    try {
+                        $userValidator->assert($postData);
+
+                        if($userImagen->getError() == UPLOAD_ERR_OK){
+
+                            if($userImagen->getClientMediaType() == 'image/jpeg' || $userImagen->getClientMediaType() == 'imagen/png' || $userImagen->getClientMediaType() == 'imagen/jpg'){
+                                
+                                $nombreImagen = $userImagen->getClientFilename();
+                                $userImagen->moveTo("assets/img/$nombreImagen");
+
+                            }else{
+                                $warnigMessage = 'Formato incorrecto de la imagen';
+                            }
                         }
+                        
+                        $user->userEmail = $userCorreo;
+                        $user->userPhone = $userTelefono;
+                        $user->userPhoto = $nombreImagen;
+                        $user->save();
+                        $responseMessage = 'Perfil Actualizado';
+
+                        $_SESSION['user'] = $user->getAttributes();
+                        $userSession = $_SESSION['user'];
+
+                    } catch (NestedValidationException $exception) {
+                        $errorsMessage = $exception->getMessages();
+                    }catch(Exception $e){
+                        $warnigMessage = $e->getMessage();
                     }
-                    
-                    $user->userEmail = $userCorreo;
-                    $user->userPhone = $userTelefono;
-                    $user->userPhoto = $nombreImagen;
-                    $user->save();
-                    $responseMessage = 'Perfil Actualizado';
-
-                     $_SESSION['user'] = $user->getAttributes();
-                     $userSession = $_SESSION['user'];
-
-                } catch (NestedValidationException $exception) {
-                    $errorsMessage = $exception->getMessages();
-                }catch(Exception $e){
-                    $warnigMessage = $e->getMessage();
+                }else{
+                    $warnigMessage = 'No se a realizado ningún cambio';
                 }
-            }else{
-                $warnigMessage = 'No se a realizado ningún cambio';
             }
+            return $this->renderHTML('editProfile.twig',[
+                'user'=>$userSession,
+                'responseMessage'=>$responseMessage,
+                'errorsMessage'=>$errorsMessage,
+                'warningMessage'=>$warnigMessage
+            ]);
+        }else{
+            echo 'No eres user';
+            die;
         }
-        return $this->renderHTML('editProfile.twig',[
-            'user'=>$userSession,
-            'responseMessage'=>$responseMessage,
-            'errorsMessage'=>$errorsMessage,
-            'warningMessage'=>$warnigMessage
-        ]);
     }
 
     public function getChangePassword($request){

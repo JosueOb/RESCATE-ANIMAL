@@ -2,7 +2,9 @@
 {% block styleAdmin %}<link rel="stylesheet" href="../../assets/css/styles-admin.css">{% endblock %}
 {% block imgAdmin %}<img src="../../assets/img/{{userAdmin.userPhoto}}" alt="">{% endblock %}
 {% block content %}
+
 <!--Formulario de actualización de usuario-->
+
     <div class="container">
 
         {% if responseMessage %}
@@ -34,7 +36,9 @@
             <a class="btn btn-dark btn-lg btn-block mt-3" href="/user/update/{{userUpdate.userId}}"><i class="fas fa-list-ul"></i>Regresar</a>
         </form>
     </div>
+
     <!--/Formulario de actualización de usuario-->
+
 {% endblock %}
 {% block javaScriptAdmin %}
 <script src="../../assets/js/sidebar.js"></script>

@@ -23,8 +23,7 @@ class AdminController extends BaseController{
                 'userAdmin'=>$userAdminSession
             ]);
         }else{
-            echo 'No eres admin';
-            die;
+            return $this->redirectResponse('/user');
         }
     }
 
@@ -83,8 +82,7 @@ class AdminController extends BaseController{
             ]);
 
         }else{
-            echo 'No eres admin';
-            die;
+            return $this->redirectResponse('/user');
         }
     }
     
@@ -99,8 +97,7 @@ class AdminController extends BaseController{
             // $userDelete->delete();
             return $this->redirectResponse('/admin');
         }else{
-            echo 'No eres admin';
-            die;
+            return $this->redirectResponse('/user');
         }
     }
 
@@ -177,8 +174,7 @@ class AdminController extends BaseController{
             ]);
 
         }else{
-            echo 'No eres admin';
-            die;
+            return $this->redirectResponse('/user');
         }
     }
 
@@ -223,8 +219,7 @@ class AdminController extends BaseController{
             ]);
 
         }else{
-            echo 'No eres admin';
-            die;
+            return $this->redirectResponse('/user');
         }
         
 
@@ -239,8 +234,7 @@ class AdminController extends BaseController{
                 'listUser'=>$listUser
             ]);
         }else{
-            echo 'No eres admin';
-            die;
+            return $this->redirectResponse('/user');
         }
     }
     

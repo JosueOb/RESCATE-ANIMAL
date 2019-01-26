@@ -24,8 +24,7 @@ class UserController extends BaseController{
                 'listDogs'=>$listDogs
             ]);
         }else{
-            echo 'No eres User';
-            die;
+            return $this->redirectResponse('/admin');
         }
     }
 
@@ -98,8 +97,7 @@ class UserController extends BaseController{
                 'warningMessage'=>$warnigMessage
             ]);
         }else{
-            echo 'No eres user';
-            die;
+            return $this->redirectResponse('/admin');
         }
     }
 
@@ -142,8 +140,7 @@ class UserController extends BaseController{
             ]);
 
         }else{
-            echo 'No eres User';
-            die;
+            return $this->redirectResponse('/admin');
         }
     }
 }

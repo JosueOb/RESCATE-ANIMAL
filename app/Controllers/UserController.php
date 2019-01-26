@@ -65,7 +65,7 @@ class UserController extends BaseController{
                             if($userImagen->getClientMediaType() == 'image/jpeg' || $userImagen->getClientMediaType() == 'imagen/png' || $userImagen->getClientMediaType() == 'imagen/jpg'){
                                 
                                 $nombreImagen = $userImagen->getClientFilename();
-                                $userImagen->moveTo("assets/img/$nombreImagen");
+                                $userImagen->moveTo("assets/img/users/$nombreImagen");
 
                             }else{
                                 $warnigMessage = 'Formato incorrecto de la imagen';

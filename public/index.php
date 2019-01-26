@@ -104,7 +104,16 @@ $map->get('userIndex','/user',[
     'action'=>'getUserIndex',
     'auth'=>true
 ]);
-
+$map->get('getEditProfile','/perfil',[
+    'controller'=>'App\Controllers\UserController',
+    'action'=>'getEditProfile',
+    'auth'=>true
+]);
+$map->post('postEditProfile','/perfil',[
+    'controller'=>'App\Controllers\UserController',
+    'action'=>'getEditProfile',
+    'auth'=>true
+]);
 //Rutas de autenticación
 $map->get('loginIndex','/login',[
     'controller'=>'App\Controllers\AccessController',

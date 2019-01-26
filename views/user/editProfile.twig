@@ -1,0 +1,67 @@
+{% extends "layout.twig" %}
+{% block content %}
+<!--Formulario de actualización de usuario-->
+    <div class="container">
+
+        {% if responseMessage %}
+            <div class="alert alert-success" role="alert" style=''>
+                {{ responseMessage }}
+            </div>
+        {% endif %}
+        {% if warningMessage %}
+            <div class="alert alert-warning" role="alert" style=''>
+                {{ warningMessage }}
+            </div>
+        {% endif %}
+        {% if errorsMessage %}
+            <div class="alert alert-danger" role="alert" style=''>
+            {% for error in errorsMessage %}
+                {{ error }} <br>
+            {% endfor %}
+            </div>
+        {% endif %}
+
+        <h3>Editar Perfil</h3>
+        <form action='/perfil' id='formulario' autocomplete="off" method='POST' enctype="multipart/form-data">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Nombre</label>
+                    <p class="form-control info">{{user.userName}}</p>
+                    {# <input type="text" class="form-control" id="userNombre" name='userNombre' value="{{userUpdate.userName}}" placeholder="Nombre"> #}
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Apellidos</label>
+                    <p class="form-control info">{{user.userLastName}}</p>
+                    {# <input type="text" class="form-control" id="userApellido" name='userApellido' value="{{userUpdate.userLastName}}" placeholder="Apellidos"> #}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label># Cédula</label>
+                    <p class="form-control info">{{user.userCedula}}</p>
+                    {# <input type="text" class="form-control" id="userCedula" name='userCedula' value="{{userUpdate.userCedula}}" placeholder="Cédula"> #}
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="userTelefono"># Teléfono/Celular</label>
+                    <input type="tel" class="form-control" id="userTelefono" name='userTelefono' value="{{user.userPhone}}" placeholder="Teléfono o celular">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="userCorreo">Correo Electrónico</label>
+                <input type="email" class="form-control" id="userCorreo" name='userCorreo' value="{{user.userEmail}}" placeholder="Correo electrónico">
+            </div>
+            <div class="form-group">
+                <label>Imagen</label>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="userImagen" name="userImagen" accept=".jpg, .jpeg, .png" lag='es'>
+                    <label class="custom-file-label" for="userImagen">{{user.userPhoto}}</label>
+                    {# <label class="custom-file-label" for="userImagen">Seleccione una imagen</label> #}
+                </div>
+            </div>
+            
+            <a class="btn btn-warning btn-lg btn-block mt-3" href="/user/changePass"><i class="fas fa-list-ul"></i>Cambiar Contraseña</a>
+            <button type="submit" class="btn btn-dark btn-lg btn-block mt-3">Actualizar</button>
+        </form>
+    </div>
+    <!--/Formulario de actualización de usuario-->
+{% endblock %}

@@ -114,6 +114,16 @@ $map->post('postEditProfile','/perfil',[
     'action'=>'getEditProfile',
     'auth'=>true
 ]);
+$map->get('getChangePassword','/user/changePass',[
+    'controller'=>'App\Controllers\UserController',
+    'action'=>'getChangePassword',
+    'auth'=>true
+]);
+$map->post('postChangePassword','/user/changePass',[
+    'controller'=>'App\Controllers\UserController',
+    'action'=>'getChangePassword',
+    'auth'=>true
+]);
 //Rutas de autenticación
 $map->get('loginIndex','/login',[
     'controller'=>'App\Controllers\AccessController',

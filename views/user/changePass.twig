@@ -1,0 +1,42 @@
+{% extends "layout.twig" %}
+{% block styleAdmin %}<link rel="stylesheet" href="../../assets/css/styles-admin.css">{% endblock %}
+{# {% block imgAdmin %}<img src="../../assets/img/userlogo.png" alt="">{% endblock %} #}
+{% block content %}
+<!--Formulario de actualización de usuario-->
+    <div class="container">
+
+        {% if responseMessage %}
+            <div class="alert alert-success" role="alert" style=''>
+                {{ responseMessage }}
+            </div>
+        {% endif %}
+        {% if errorsMessage %}
+            <div class="alert alert-danger" role="alert" style=''>
+            {% for error in errorsMessage %}
+                {{ error }} <br>
+            {% endfor %}
+            </div>
+        {% endif %}
+
+        <h3>Cambiar Contraseña</h3>
+        <form action='/user/changePass' autocomplete="off" method='POST' id='formulario'>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="userContrasenia">Contraseña</label>
+                    <input type="password" class="form-control" id="userContrasenia" name='userContrasenia' placeholder="Contraseña" autocomplete="new-password">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="userContraseniaConfirm">Confirmar contrasenia</label>
+                    <input type="password" class="form-control" id="userContraseniaConfirm" name='userContraseniaConfirm' placeholder="Confirma contraseña">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-warning btn-lg btn-block mt-3">Cambiar</button>
+            <a class="btn btn-dark btn-lg btn-block mt-3" href="/perfil"><i class="fas fa-list-ul"></i>Regresar</a>
+        </form>
+    </div>
+    <!--/Formulario de actualización de usuario-->
+{% endblock %}
+{% block javaScriptAdmin %}
+<script src="../../assets/js/sidebar.js"></script>
+<script src="../../assets/js/form-changePass-user.js"></script>
+{% endblock %}

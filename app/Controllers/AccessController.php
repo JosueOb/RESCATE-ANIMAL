@@ -38,10 +38,13 @@ class AccessController extends BaseController{
                     // var_dump($user->getAttributes());
                     if($user->userType == 'Admin'){
                         return $this->redirectResponse('/admin');
-                    }elseif($user->userType == 'User'){
+                    }elseif($user->userType == 'User' && $user->userStatus == true ){
                         return $this->redirectResponse('/user');
                         // $responseMessage= 'User';
                         // return $this->redirectResponse('/user');
+                    }else{
+                        $responseMessage='Datos Incorrectos';
+                        
                     }
                 }else{
                     $responseMessage='Datos Incorrectos';

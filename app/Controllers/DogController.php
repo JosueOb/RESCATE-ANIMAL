@@ -29,10 +29,10 @@ class DogController extends BaseController{
 
      
                 $dogValidator = v::key('dogNombre', v::stringType()->notEmpty()->length(3,25))
-                                ->key('dogGenero',v::stringType()->notEmpty()->oneOf(v::equals('hembra'),v::equals('macho')))
-                                ->key('dogEdad',v::stringType()->notEmpty()->oneOf(v::equals('adulto'),v::equals('cachorro')))
-                                ->key('dogTamanio',v::stringType()->notEmpty()->oneOf(v::equals('grande'),v::equals('mediano'),v::equals('pequenio')))
-                                ->key('dogCiudad', v::stringType()->notEmpty()->oneOf(v::equals('quito'),v::equals('guayaquil'),v::equals('cuenca')))
+                                ->key('dogGenero',v::stringType()->notEmpty()->oneOf(v::equals('Hembra'),v::equals('Macho')))
+                                ->key('dogEdad',v::stringType()->notEmpty()->oneOf(v::equals('Adulto'),v::equals('Cachorro')))
+                                ->key('dogTamanio',v::stringType()->notEmpty()->oneOf(v::equals('Grande'),v::equals('Mediano'),v::equals('Pequeño')))
+                                ->key('dogCiudad', v::stringType()->notEmpty()->oneOf(v::equals('Quito'),v::equals('Guayaquil'),v::equals('Cuenca')))
                                 ->key('dogDescripcion', v::stringType()->notEmpty()->length(50,255));
                 $fotoValidator = v::stringType()->notEmpty()->oneOf(v::extension('jpg'),v::extension('jpeg'),v::extension('png'))->setName('dogPhoto');
                 

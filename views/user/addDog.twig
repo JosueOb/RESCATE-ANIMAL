@@ -8,11 +8,7 @@
                 {{ responseMessage }}
             </div>
         {% endif %}
-        {# {% if warningMessage %}
-            <div class="alert alert-warning" role="alert" style=''>
-                {{ warningMessage }}
-            </div>
-        {% endif %} #}
+
         {% if errorsMessage %}
             <div class="alert alert-danger" role="alert" style=''>
             {% for error in errorsMessage %}
@@ -26,55 +22,46 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="dogNombre">Nombre</label>
-                    {# <p class="form-control info"></p> #}
                     <input type="text" class="form-control" id="dogNombre" name='dogNombre' placeholder="Nombre">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="dogGenero">Género</label>
-                    <div class="input-group mb-3">
-                        <select class="custom-select" id="dogGenero" name='dogGenero'>
-                            <option selected value=''>Selecciona género</option>
-                            <option value="hembra">Hembra</option>
-                            <option value="macho">Macho</option>
-                        </select>
-                    </div>
+                    <select class="custom-select" id="dogGenero" name='dogGenero'>
+                        <option selected value=''>Selecciona género</option>
+                        <option value="Hembra">Hembra</option>
+                        <option value="Macho">Macho</option>
+                    </select>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="dogEdad">Edad</label>
-                    <div class="input-group mb-3">
-                        <select class="custom-select" id="dogEdad" name='dogEdad'>
-                            <option selected value=''>Selecciona edad</option>
-                            <option value="adulto">Adulto</option>
-                            <option value="cachorro">Cachorro</option>
-                        </select>
-                    </div>
+                    <select class="custom-select" id="dogEdad" name='dogEdad'>
+                        <option selected value=''>Selecciona edad</option>
+                        <option value="Adulto">Adulto</option>
+                        <option value="Cachorro">Cachorro</option>
+                    </select>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="dogTamanio">Tamaño</label>
-                    <div class="input-group mb-3">
-                        <select class="custom-select" id="dogTamanio" name='dogTamanio'>
-                            <option selected value=''>Selecciona tamaño</option>
-                            <option value="grande">Grande</option>
-                            <option value="mediano">Mediano</option>
-                            <option value="pequenio">Pequeño</option>
-                        </select>
-                    </div>
+                    <select class="custom-select" id="dogTamanio" name='dogTamanio'>
+                        <option selected value=''>Selecciona tamaño</option>
+                        <option value="Grande">Grande</option>
+                        <option value="Mediano">Mediano</option>
+                        <option value="Pequeño">Pequeño</option>
+                    </select>
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="dogCiudad">Ciudad</label>
-                    <div class="input-group mb-3">
-                        <select class="custom-select" id="dogCiudad" name='dogCiudad'>
-                            <option selected value=''>Selecciona ciudad</option>
-                            <option value="quito">Quito</option>
-                            <option value="guayaquil">Guayaquil</option>
-                            <option value="cuenca">Cuenca</option>
-                        </select>
-                    </div>
+                    <select class="custom-select" id="dogCiudad" name='dogCiudad'>
+                        <option selected value=''>Selecciona ciudad</option>
+                        <option value="Quito">Quito</option>
+                        <option value="Guayaquil">Guayaquil</option>
+                        <option value="Cuenca">Cuenca</option>
+                    </select>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="dogFoto">Foto</label>
@@ -99,4 +86,5 @@
 {% block javaScriptUser %}
     <script src="../assets/js/sidebar.js"></script>
     <script src="../assets/js/bs-custom-file-input.js"></script>
+    <script src="../assets/js/form-add-dog.js"></script>
 {% endblock %}

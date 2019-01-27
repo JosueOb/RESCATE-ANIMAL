@@ -1,0 +1,36 @@
+{% extends "layout.twig" %}
+{% block content %}
+    <div class="table-user table-responsive-sm table-responsive-md table-responsive-lg">
+        <h3>Historial de canes</h3>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Género</th>
+                <th scope="col">Edad</th>
+                <th scope="col">Tamaño</th>
+                <th scope="col">Ciudad</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Modificar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for dog in listDogs %}
+                <tr>
+                    <th scope="row">{{ loop.index}}</th>
+                    <td>{{ dog.dogName }}</td>
+                    <td>{{ dog.dogGender }}</td>
+                    <td>{{ dog.dogAge}}</td>
+                    <td>{{ dog.dogSize}}</td>
+                    <td>{{ dog.dogCity}}</td>
+                    <td>{{ dog.dogStatus}}</td>
+                    
+                    <td><a class="btn btn-outline-primary" href="/dog/update/{{dog.dogId}}"><i class="fas fa-user-edit"></i></a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

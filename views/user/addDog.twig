@@ -1,0 +1,102 @@
+{% extends "layout.twig" %}
+{% block content %}
+<!--Formulario de actualización de usuario-->
+    <div class="container">
+
+        {% if responseMessage %}
+            <div class="alert alert-success" role="alert" style=''>
+                {{ responseMessage }}
+            </div>
+        {% endif %}
+        {# {% if warningMessage %}
+            <div class="alert alert-warning" role="alert" style=''>
+                {{ warningMessage }}
+            </div>
+        {% endif %} #}
+        {% if errorsMessage %}
+            <div class="alert alert-danger" role="alert" style=''>
+            {% for error in errorsMessage %}
+                {{ error }} <br>
+            {% endfor %}
+            </div>
+        {% endif %}
+
+        <h3>Registrar Can</h3>
+        <form action='#' id='formulario' autocomplete="off" method='POST' enctype="multipart/form-data">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="dogNombre">Nombre</label>
+                    {# <p class="form-control info"></p> #}
+                    <input type="text" class="form-control" id="dogNombre" name='dogNombre' placeholder="Nombre">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="dogGenero">Género</label>
+                    <div class="input-group mb-3">
+                        <select class="custom-select" id="dogGenero" name='dogGenero'>
+                            <option selected value=''>Selecciona género</option>
+                            <option value="hembra">Hembra</option>
+                            <option value="macho">Macho</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="dogEdad">Edad</label>
+                    <div class="input-group mb-3">
+                        <select class="custom-select" id="dogEdad" name='dogEdad'>
+                            <option selected value=''>Selecciona edad</option>
+                            <option value="adulto">Adulto</option>
+                            <option value="cachorro">Cachorro</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="dogTamanio">Tamaño</label>
+                    <div class="input-group mb-3">
+                        <select class="custom-select" id="dogTamanio" name='dogTamanio'>
+                            <option selected value=''>Selecciona tamaño</option>
+                            <option value="grande">Grande</option>
+                            <option value="mediano">Mediano</option>
+                            <option value="pequenio">Pequeño</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="dogCiudad">Ciudad</label>
+                    <div class="input-group mb-3">
+                        <select class="custom-select" id="dogCiudad" name='dogCiudad'>
+                            <option selected value=''>Selecciona ciudad</option>
+                            <option value="quito">Quito</option>
+                            <option value="guayaquil">Guayaquil</option>
+                            <option value="cuenca">Cuenca</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="dogFoto">Foto</label>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="dogFoto" name="dogFoto" accept="image/png, image/jpeg, image/png" lag='es'>
+                        <label class="custom-file-label" for="userImagen">Selecciona una foto</label>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="form-group">
+                <label for="dogDescripcion">Descripción</label>
+                <textarea class="form-control" id="dogDescripcion" name='dogDescripcion' rows="3"  placeholder="Descripción"></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-dark btn-lg btn-block mt-3">Registrar</button>
+        </form>
+    </div>
+    <!--/Formulario de actualización de usuario-->
+{% endblock %}
+{% block javaScriptUser %}
+    <script src="../assets/js/sidebar.js"></script>
+    <script src="../assets/js/bs-custom-file-input.js"></script>
+{% endblock %}

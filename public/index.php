@@ -124,6 +124,24 @@ $map->post('postChangePassword','/user/changePass',[
     'action'=>'getChangePassword',
     'auth'=>true
 ]);
+$map->get('getLogDogs','/dog/log',[
+    'controller'=>'App\Controllers\UserController',
+    'action'=>'getLogDogs',
+    'auth'=>true
+]);
+
+$map->get('getAddDog','/dog/add',[
+    'controller'=>'App\Controllers\DogController',
+    'action'=>'getAddDog',
+    'auth'=>true
+]);
+$map->post('postAddDog','/dog/add',[
+    'controller'=>'App\Controllers\DogController',
+    'action'=>'getAddDog',
+    'auth'=>true
+]);
+
+
 //Rutas de autenticación
 $map->get('loginIndex','/login',[
     'controller'=>'App\Controllers\AccessController',

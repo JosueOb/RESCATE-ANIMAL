@@ -1,5 +1,5 @@
 {% extends "layout.twig" %}
-
+{% block styleAdmin %}<link rel="stylesheet" href="../../assets/css/styles-admin.css">{% endblock %}
 {% block content %}
 
 <!--Formulario de actualización de usuario-->
@@ -39,7 +39,7 @@
     <!--/Formulario de actualización de usuario-->
     
 {% endblock %}
-{% block javaScriptAdmin %}
+{% block javaScriptUser %}
 <script src="../../assets/js/sidebar.js"></script>
 <script src="../../assets/js/form-changePass-user.js"></script>
 {% endblock %}

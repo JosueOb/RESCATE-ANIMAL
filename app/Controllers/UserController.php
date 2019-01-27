@@ -18,7 +18,8 @@ class UserController extends BaseController{
         $userSession = $_SESSION['user'];
 
         if($userSession['userType'] == 'User'){
-            $listDogs = Dog::all();
+            // $listDogs = Dog::all();
+            $listDogs = Dog::where('dogStatus','En adopción')->get();
             return $this->renderHTML('index.twig',[
                 'user'=>$userSession,
                 'listDogs'=>$listDogs
@@ -139,6 +140,21 @@ class UserController extends BaseController{
                 'errorsMessage'=>$errorsMessage
             ]);
 
+        }else{
+            return $this->redirectResponse('/admin');
+        }
+    }
+
+    public function getLogDogs(){
+
+        $userSession = $_SESSION['user'];
+
+        if($userSession['userType'] == 'User'){
+            $allDogs = Dog::all();
+            return $this->renderHTML('logDog.twig',[
+                'user'=>$userSession,
+                'listDogs'=>$allDogs
+            ]);
         }else{
             return $this->redirectResponse('/admin');
         }

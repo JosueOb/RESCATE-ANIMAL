@@ -70,4 +70,21 @@ class DogController extends BaseController{
             return $this->redirectResponse('/admin');
         }
     }
+
+    public function getDeleteDog($request){
+        // var_dump($request->getAttributes());
+        // die;
+        $userSession = $_SESSION['user'];
+        if($userSession['userType'] == 'User'){
+
+            $attributes=$request->getAttributes();
+            $dogId = $attributes['dogId'];
+            $dogDelete = Dog::find($dogId);
+            $dogDelete->dogStatus = 'Inactivo';
+            $dogDelete->save();
+            return $this->redirectResponse('/user');
+        }else{
+            return $this->redirectResponse('/admin');
+        }
+    }
 }

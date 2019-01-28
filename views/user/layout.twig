@@ -30,10 +30,19 @@
 
             <ul class="list-unstyled components">
             <li>
-                <a href="/user">
-                    <i class="fas fa-list-ul"></i>
-                    Listar Canes
-                </a>
+
+                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-list-ul"></i> Listar Canes</a>
+                <ul class="collapse list-unstyled" id="pageSubmenu">
+                    <li>
+                        <a href="/user">En adopción</a>
+                    </li>
+                    <li>
+                        <a href="/dog/adopted">Adoptados</a>
+                    </li>
+                    <li>
+                        <a href="/dog/inactive">Inactivos</a>
+                    </li>
+                </ul>
             </li>
             <li>
                 <a href="/dog/add">

@@ -153,7 +153,8 @@ class UserController extends BaseController{
             $allDogs = Dog::all();
             return $this->renderHTML('logDog.twig',[
                 'user'=>$userSession,
-                'listDogs'=>$allDogs
+                'listDogs'=>$allDogs,
+                'title'=>'Historial de canes'
             ]);
         }else{
             return $this->redirectResponse('/admin');

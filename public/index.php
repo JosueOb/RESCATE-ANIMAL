@@ -129,6 +129,16 @@ $map->get('getLogDogs','/dog/log',[
     'action'=>'getLogDogs',
     'auth'=>true
 ]);
+$map->get('getAdoptedDogs','/dog/adopted',[
+    'controller'=>'App\Controllers\DogController',
+    'action'=>'getAdoptedDogs',
+    'auth'=>true
+]);
+$map->get('getInactiveDogs','/dog/inactive',[
+    'controller'=>'App\Controllers\DogController',
+    'action'=>'getInactiveDogs',
+    'auth'=>true
+]);
 
 $map->get('getAddDog','/dog/add',[
     'controller'=>'App\Controllers\DogController',

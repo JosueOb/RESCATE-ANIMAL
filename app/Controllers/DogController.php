@@ -167,9 +167,40 @@ class DogController extends BaseController{
                 'warningMessage'=>$warningMessage
             ]);
 
-            // var_dump($dogId);
-            // die;
+        }else{
+            return $this->redirectResponse('/admin');
+        }
+    }
 
+    public function getAdoptedDogs(){
+
+        $userSession = $_SESSION['user'];
+
+        if($userSession['userType'] == 'User'){
+            // $listDogs = Dog::all();
+            $listDogs = Dog::where('dogStatus','Adoptado')->get();
+            return $this->renderHTML('logDog.twig',[
+                'user'=>$userSession,
+                'listDogs'=>$listDogs,
+                'title'=>'Canes Adoptados'
+            ]);
+        }else{
+            return $this->redirectResponse('/admin');
+        }
+    }
+
+    public function getInactiveDogs(){
+
+        $userSession = $_SESSION['user'];
+
+        if($userSession['userType'] == 'User'){
+            // $listDogs = Dog::all();
+            $listDogs = Dog::where('dogStatus','Inactivo')->get();
+            return $this->renderHTML('logDog.twig',[
+                'user'=>$userSession,
+                'listDogs'=>$listDogs,
+                'title'=>'Canes Inactivos'
+            ]);
         }else{
             return $this->redirectResponse('/admin');
         }

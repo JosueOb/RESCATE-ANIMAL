@@ -140,11 +140,22 @@ $map->post('postAddDog','/dog/add',[
     'action'=>'getAddDog',
     'auth'=>true
 ]);
-$map->get('getDelete','/dog/delete/{dogId}',[
+$map->get('getDeleteDog','/dog/delete/{dogId}',[
     'controller'=>'App\Controllers\DogController',
     'action'=>'getDeleteDog',
     'auth'=>true
 ]);
+$map->get('getUpdateDog','/dog/update/{dogId}',[
+    'controller'=>'App\Controllers\DogController',
+    'action'=>'getUpdateDog',
+    'auth'=>true
+]);
+$map->post('postUpdateDog','/dog/update/{dogId}',[
+    'controller'=>'App\Controllers\DogController',
+    'action'=>'getUpdateDog',
+    'auth'=>true
+]);
+
 
 
 //Rutas de autenticación

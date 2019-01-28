@@ -1,0 +1,149 @@
+{% extends "layout.twig" %}
+{% block styleAdmin %}<link rel="stylesheet" href="../../assets/css/styles-admin.css">{% endblock %}
+{% block imgUser %}<img src="../../assets/img/users/{{user.userPhoto}}" alt="">{% endblock %}
+{% block content %}
+<!--Formulario de actualización de usuario-->
+    <div class="container">
+
+        {% if responseMessage %}
+            <div class="alert alert-success" role="alert" style=''>
+                {{ responseMessage }}
+            </div>
+        {% endif %}
+
+        {% if warningMessage %}
+            <div class="alert alert-warning" role="alert" style=''>
+                {{ warningMessage }}
+            </div>
+        {% endif %}
+
+        {% if errorsMessage %}
+            <div class="alert alert-danger" role="alert" style=''>
+            {% for error in errorsMessage %}
+                {{ error }} <br>
+            {% endfor %}
+            </div>
+        {% endif %}
+
+        <h3>Actualizar Can</h3>
+        <form action='/dog/update/{{dog.dogId}}' id='formulario' autocomplete="off" method='POST' enctype="multipart/form-data">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="dogNombre">Nombre</label>
+                    <input type="text" class="form-control" id="dogNombre" name='dogNombre' value='{{dog.dogName}}' placeholder="Nombre">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="dogGenero">Género</label>
+                    <select class="custom-select" id="dogGenero" name='dogGenero'>
+
+                    {% if dog.dogGender == 'Macho' %}
+                        <option selected value='Macho'>Macho</option>
+                        <option value="Hembra">Hembra</option>
+                    {% else %}
+                        <option selected value="Hembra">Hembra</option>
+                        <option  value='Macho'>Macho</option>
+                    {% endif %}
+                
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="dogEdad">Edad</label>
+                    <select class="custom-select" id="dogEdad" name='dogEdad'>
+
+                    {% if dog.dogAge == 'Adulto' %}
+                        <option selected value="Adulto">Adulto</option>
+                        <option value="Cachorro">Cachorro</option>
+                    {% else %}
+                        <option selected value="Cachorro">Cachorro</option>
+                        <option  value="Adulto">Adulto</option>
+                    {% endif %}
+
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="dogTamanio">Tamaño</label>
+                    <select class="custom-select" id="dogTamanio" name='dogTamanio'>
+
+                    {% if dog.dogSize == 'Grande' %}
+                        <option selected value="Grande">Grande</option>
+                        <option value="Mediano">Mediano</option>
+                        <option value="Pequeño">Pequeño</option>
+                    {% elseif dog.dogSize == 'Mediano' %}
+                        <option selected value="Mediano">Mediano</option>
+                        <option  value="Grande">Grande</option>
+                        <option value="Pequeño">Pequeño</option>
+                    {% else %}
+                        <option selected value="Pequeño">Pequeño</option>
+                        <option  value="Mediano">Mediano</option>
+                        <option  value="Grande">Grande</option>
+                    {% endif %}
+
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="dogCiudad">Ciudad</label>
+                    <select class="custom-select" id="dogCiudad" name='dogCiudad'>
+                    {% if dog.dogCity == 'Quito' %}
+                        <option selected value="Quito">Quito</option>
+                        <option value="Guayaquil">Guayaquil</option>
+                        <option value="Cuenca">Cuenca</option>
+                    {% elseif dog.dogCity == 'Guayaquil' %}
+                        <option selected value="Guayaquil">Guayaquil</option>
+                        <option  value="Quito">Quito</option>
+                        <option value="Cuenca">Cuenca</option>
+                    {% else %}
+                        <option selected value="Cuenca">Cuenca</option>
+                        <option  value="Guayaquil">Guayaquil</option>
+                        <option  value="Quito">Quito</option>
+                    {% endif %}
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="dogFoto">Foto</label>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="dogFoto" name="dogFoto" accept="image/png, image/jpeg, image/png"  lag='es'>
+                        <label class="custom-file-label" for="dogFoto">{{dog.dogPhoto}}</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="dogEstado">Estado</label>
+                <select class="custom-select" id="dogEstado" name='dogEstado'>
+                {% if dog.dogStatus == 'Inactivo' %}
+                    <option selected value="Inactivo">Inactivo</option>
+                    <option  value="En adopción">En adopción</option>
+                    <option value="Adoptado">Adoptado</option>
+                {% elseif dog.dogStatus == 'En adopción' %}
+                    <option selected value="En adopción">En adopción</option>
+                    <option value="Adoptado">Adoptado</option>
+                    <option value="Inactivo">Inactivo</option>
+                {% else %}
+                    <option selected value="Adoptado">Adoptado</option>
+                    <option  value="En adopción">En adopción</option>
+                    <option value="Inactivo">Inactivo</option>
+                {% endif %}
+                </select>
+            </div>
+
+            
+            <div class="form-group">
+                <label for="dogDescripcion">Descripción</label>
+                <textarea class="form-control" id="dogDescripcion" name='dogDescripcion' rows="3" placeholder="Descripción">{{dog.dogDescription}}</textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-dark btn-lg btn-block mt-3">Actualizar</button>
+        </form>
+    </div>
+    <!--/Formulario de actualización de usuario-->
+{% endblock %}
+{% block javaScriptUser %}
+    <script src="../../assets/js/sidebar.js"></script>
+    <script src="../../assets/js/bs-custom-file-input.js"></script>
+    {# <script src="../../assets/js/form-update-dog.js"></script> #}
+{% endblock %}

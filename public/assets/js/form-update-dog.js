@@ -22,7 +22,8 @@ $(document).ready(function(){
                 required:true
             },
             dogFoto:{
-                 required:true
+                extension: "jpg|jpeg|png",
+                accept: "image/*"
             },
             dogDescripcion:{
                 required:true,
@@ -49,7 +50,8 @@ $(document).ready(function(){
                 required:'* Seleccione la ciudad'
             },
             dogFoto:{
-                required:'* Suba una foto'
+                extension: "Extensión del archivo inválida",
+                accept: "Archivo inválido"
             },
             dogDescripcion:{
                 required:'* Ingrese una descripción',

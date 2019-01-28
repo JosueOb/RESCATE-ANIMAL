@@ -30,7 +30,7 @@ $(document).ready(function(){
             },
             userImagen:{
                 extension: "Extensión del archivo inválida",
-                accept: "Solo se admite una imagen"
+                accept: "Archivo inválido"
             }
         },
         submitHandler:function(form){

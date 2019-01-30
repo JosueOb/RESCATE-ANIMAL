@@ -144,56 +144,20 @@
 
                     <div id="scrolling">
                         <ul>
-                            <li>
+                        
+                            {% for dog in firstFiveDog %}
+                                <li>
                                 <div class="card" style="width: 20rem;">
-                                    <img class="card-img-top" src="../assets/img/others/hero.jpg" alt="Card image cap">
+                                    <img class="card-img-top" src="../assets/img/dogs/{{dog.dogPhoto}}" alt="Card image cap">
                                     <div class="card-body">
-                                        <h5 class="card-title">Nombre Can</h5>
-                                        <p class="card-text">Descripción can</p>
+                                        <h5 class="card-title">{{dog.dogName}}</h5>
+                                        <p class="card-text">{{dog.dogDescription}}</p>
                                         <a href="#" class="btn">Más información</a>
                                     </div>
                                 </div>
                             </li>
-                            <li>
-                                <div class="card" style="width: 20rem;">
-                                    <img class="card-img-top" src="../assets/img/others/hero.jpg" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Nombre Can</h5>
-                                        <p class="card-text">Descripción can</p>
-                                        <a href="#" class="btn">Más información</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="card" style="width: 20rem;">
-                                    <img class="card-img-top" src="../assets/img/others/hero.jpg" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Nombre Can</h5>
-                                        <p class="card-text">Descripción can</p>
-                                        <a href="#" class="btn">Más información</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="card" style="width: 20rem;">
-                                    <img class="card-img-top" src="../assets/img/others/hero.jpg" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Nombre Can</h5>
-                                        <p class="card-text">Descripción can</p>
-                                        <a href="#" class="btn">Más información</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="card" style="width: 20rem;">
-                                    <img class="card-img-top" src="../assets/img/others/hero.jpg" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Nombre Can</h5>
-                                        <p class="card-text">Descripción can</p>
-                                        <a href="#" class="btn">Más información</a>
-                                    </div>
-                                </div>
-                            </li>
+                            {% endfor %}
+                            
                         </ul>
                     </div>
                 </div>

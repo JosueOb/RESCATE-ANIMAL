@@ -49,11 +49,12 @@ $map = $routerContainer->getMap();
 $map->get('visitorIndex','/',[
     'controller'=>'App\Controllers\VisitorController',
     'action'=>'getVisitorIndex'
-]);
+    ]);
 $map->get('getGalleryDog','/gallery',[
     'controller'=>'App\Controllers\VisitorController',
     'action'=>'getGalleryDog'
 ]);
+
 
 // Rutas del administrador
 $map->get('adminIndex','/admin',[

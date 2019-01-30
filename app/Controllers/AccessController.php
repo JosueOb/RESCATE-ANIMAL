@@ -9,7 +9,7 @@ use Respect\Validation\Exceptions\NestedValidationException;
 class AccessController extends BaseController{
 
     public function __construct(){
-        $this->viewPath='../views/access';
+        $this->viewPath='../views/visitor';
         parent::__construct();
     }
 

@@ -1,0 +1,50 @@
+{% extends "layoutCustom.twig" %}
+{% block styles %} 
+<!--Custom CSS-->
+<link rel="stylesheet" href="../assets/css/styles-visitor-main.css">
+    <link rel="stylesheet" href="../assets/css/styles-access.css">
+{% endblock %}
+{% block content %}
+<!--Main layout-->
+    <main>
+        <div class="container-fluid">
+            <div id="login">
+            <h2 class="mb-5 font-weight-bold text-center">Login</h2>
+                <div class="container">
+                    
+                    {% if responseMessage %}
+                        <div class="alert alert-danger text-center" role="alert" style=''>
+                            {{ responseMessage }}
+                        </div>
+                    {% endif %}
+                    {% if errorsMessage %}
+                        <div class="alert alert-danger text-center" role="alert" style=''>
+                        {% for error in errorsMessage %}
+                            {{ error }} <br>
+                        {% endfor %}
+                        </div>
+                    {% endif %}
+                    <div class="row">
+                        <form action='/auth' method='POST' id='formulario'>
+                            <div class="form-group">
+                                <label for="email" >Correo Electrónico</label>
+                                <input type="email" class="form-control" id="email" name='userEmail' aria-describedby="emailHelp" placeholder="Ingrese su correo">
+                            </div>
+                            <div class="form-group">
+                                <label for="pass" >Contraseña</label>
+                            <input type="password" class="form-control" id="pass" name='userPass' placeholder="Ingrese su contaseña">
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+  </main>
+{% endblock %}
+{% block scripts %}
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="../assets/js/mdb.js"></script>
+<!-- JS Custom-->
+<script src="../assets/js/form-login.js"></script>
+{% endblock %}

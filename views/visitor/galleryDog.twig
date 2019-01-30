@@ -1,458 +1,188 @@
-{% extends "layout.twig" %}
-{% block styles %} <!--Custom CSS-->
-    <link rel="stylesheet" href="../assets/css/styles-visitor-main.css">
-{% endblock %}
-{% block navBar %}
-    <!--Navbar-->
-    <nav class="navbar navbar-expand-lg fixed-top scrolling-navbar">
-        <div class="container">
-          <!-- Navbar brand -->
-            <a class="navbar-brand font-weight-bold text-uppercase" href="/#inicio">
-                <i class="fas fa-paw "></i>
-                Rescate Canino
-            </a>
-            <!-- Collapse button -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menuButton"
-              aria-controls="menuButton" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"><i class="fas fa-bars white-text"></i></span>
-            </button>
-            <!-- /Collapse button -->
-            <!-- Collapsible content -->
-            <div class="collapse navbar-collapse" id="menuButton">
-                 <!-- Links -->
-                <ul class="navbar-nav mr-auto smooth-scroll">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/#inicio">
-                            Inicio
-                        </a>
-                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/#adopcion">
-                            Adopción
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/#galeria">
-                            Galería
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/#about-us">
-                            Acerca de nosotros
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/#contactanos">
-                            Contáctanos
-                        </a>
-                    </li>
-                </ul>
-                <!-- Links -->
-            <!-- /Collapsible content -->
-        </div>
-    </nav>
-    <!--/Navbar-->
-{% endblock %}
+{% extends "layoutCustom.twig" %}
 {% block content %}
 <!--Main layout-->
-  <main>
-    <div class="container-fluid">
-        <h2 class="mb-5 font-weight-bold text-center">Galería de adopción</h2>
-          <div class="row">
-            <div class="col-md-2">
-                <h4 class="text-center font-weight-bold">Filtros</h4>
-                <form action='#' id='formulario' autocomplete="off" method='POST' enctype="multipart/form-data">
-                  <div class="form-row">
-                      <div class="form-group col-md-12">
-                          <label for="dogGenero">Género</label>
-                          <select class="custom-select" id="dogGenero" name='dogGenero'>
-                              <option selected value=''>Selecciona género</option>
-                              <option value="Hembra">Hembra</option>
-                              <option value="Macho">Macho</option>
-                          </select>
-                      </div>
-                  </div>
-                  <div class="form-row">
-                      <div class="form-group col-md-12">
-                          <label for="dogEdad">Edad</label>
-                          <select class="custom-select" id="dogEdad" name='dogEdad'>
-                              <option selected value=''>Selecciona edad</option>
-                              <option value="Adulto">Adulto</option>
-                              <option value="Cachorro">Cachorro</option>
-                          </select>
-                      </div>
-                      <div class="form-group col-md-12">
-                          <label for="dogTamanio">Tamaño</label>
-                          <select class="custom-select" id="dogTamanio" name='dogTamanio'>
-                              <option selected value=''>Selecciona tamaño</option>
-                              <option value="Grande">Grande</option>
-                              <option value="Mediano">Mediano</option>
-                              <option value="Pequeño">Pequeño</option>
-                          </select>
-                      </div>
-                  </div>
-      
-                  <div class="form-row">
-                      <div class="form-group col-md-12">
-                          <label for="dogCiudad">Ciudad</label>
-                          <select class="custom-select" id="dogCiudad" name='dogCiudad'>
-                              <option selected value=''>Selecciona ciudad</option>
-                              <option value="Quito">Quito</option>
-                              <option value="Guayaquil">Guayaquil</option>
-                              <option value="Cuenca">Cuenca</option>
-                          </select>
-                      </div>
-                  </div>
-                  
-                  <button type="submit" class="btn btn-dark btn-lg btn-block mt-3">Buscar</button>
-              </form>
-
+    <main>
+        <div class="container-fluid">
+            <h2 class="mb-5 font-weight-bold text-center">Galería de adopción</h2>
+            <div class="row">
+                <div class="col-md-2">
+                    <h4 class="text-center font-weight-bold">Filtros</h4>
+                    <form action='/gallery' id='formulario' autocomplete="off" method='POST'>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="dogGenero">Género</label>
+                                <select class="custom-select" id="dogGenero" name='dogGenero'>
+                                    <option selected value=''>Selecciona género</option>
+                                    <option value="Hembra">Hembra</option>
+                                    <option value="Macho">Macho</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label for="dogEdad">Edad</label>
+                                <select class="custom-select" id="dogEdad" name='dogEdad'>
+                                    <option selected value=''>Selecciona edad</option>
+                                    <option value="Adulto">Adulto</option>
+                                    <option value="Cachorro">Cachorro</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label for="dogTamanio">Tamaño</label>
+                                <select class="custom-select" id="dogTamanio" name='dogTamanio'>
+                                    <option selected value=''>Selecciona tamaño</option>
+                                    <option value="Grande">Grande</option>
+                                    <option value="Mediano">Mediano</option>
+                                    <option value="Pequeño">Pequeño</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label for="dogCiudad">Ciudad</label>
+                                <select class="custom-select" id="dogCiudad" name='dogCiudad'>
+                                    <option selected value=''>Selecciona ciudad</option>
+                                    <option value="Quito">Quito</option>
+                                    <option value="Guayaquil">Guayaquil</option>
+                                    <option value="Cuenca">Cuenca</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-dark btn-lg btn-block mt-3">Buscar</button>
+                    </form>
+                </div>
+                <div class="content col-md-10">
+                    <div class="row text-center contents">
+                        <div class="col-md-4 col-lg-3 col-sm-6">
+                            <div class="card">
+                                <img class="card-img-top" src="../assets/img/others/hero.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Nombre Can</h5>
+                                    <p class="card-text">Descripción can</p>
+                                    <a href="#" class="btn">Más información</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-3 col-sm-6">
+                            <div class="card">
+                                <img class="card-img-top" src="../assets/img/others/hero.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Nombre Can</h5>
+                                    <p class="card-text">Descripción can</p>
+                                    <a href="#" class="btn">Más información</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-3 col-sm-6">
+                            <div class="card">
+                                <img class="card-img-top" src="../assets/img/others/hero.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Nombre Can</h5>
+                                    <p class="card-text">Descripción can</p>
+                                    <a href="#" class="btn">Más información</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-3 col-sm-6">
+                            <div class="card">
+                                <img class="card-img-top" src="../assets/img/others/hero.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Nombre Can</h5>
+                                    <p class="card-text">Descripción can</p>
+                                    <a href="#" class="btn">Más información</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-3 col-sm-6">
+                            <div class="card">
+                                <img class="card-img-top" src="../assets/img/others/hero.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Nombre Can</h5>
+                                    <p class="card-text">Descripción can</p>
+                                    <a href="#" class="btn">Más información</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-3 col-sm-6">
+                            <div class="card">
+                                <img class="card-img-top" src="../assets/img/others/hero.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Nombre Can</h5>
+                                    <p class="card-text">Descripción can</p>
+                                    <a href="#" class="btn">Más información</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-3 col-sm-6">
+                            <div class="card">
+                                <img class="card-img-top" src="../assets/img/others/hero.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Nombre Can</h5>
+                                    <p class="card-text">Descripción can</p>
+                                    <a href="#" class="btn">Más información</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-3 col-sm-6">
+                            <div class="card">
+                                <img class="card-img-top" src="../assets/img/others/hero.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Nombre Can</h5>
+                                    <p class="card-text">Descripción can</p>
+                                    <a href="#" class="btn">Más información</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-3 col-sm-6">
+                            <div class="card">
+                                <img class="card-img-top" src="../assets/img/others/hero.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Nombre Can</h5>
+                                    <p class="card-text">Descripción can</p>
+                                    <a href="#" class="btn">Más información</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-3 col-sm-6">
+                            <div class="card">
+                                <img class="card-img-top" src="../assets/img/others/hero.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Nombre Can</h5>
+                                    <p class="card-text">Descripción can</p>
+                                    <a href="#" class="btn">Más información</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-3 col-sm-6">
+                            <div class="card">
+                                <img class="card-img-top" src="../assets/img/others/hero.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Nombre Can</h5>
+                                    <p class="card-text">Descripción can</p>
+                                    <a href="#" class="btn">Más información</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-3 col-sm-6">
+                            <div class="card">
+                                <img class="card-img-top" src="../assets/img/others/hero.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Nombre Can</h5>
+                                    <p class="card-text">Descripción can</p>
+                                    <a href="#" class="btn">Más información</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-3 col-sm-6">
+                            <div class="card">
+                                <img class="card-img-top" src="../assets/img/others/hero.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Nombre Can</h5>
+                                    <p class="card-text">Descripción can</p>
+                                    <a href="#" class="btn">Más información</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
             </div>
-            <div class="content col-md-10">
-
-
-
-
-              <div class="row text-center contents">
-                <div class="col-md-4 col-lg-3 col-sm-6">
-                  <div class="card">
-                    <img class="card-img-top" src="img/nature-3042751.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Nombre Can</h5>
-                        <p class="card-text">Descripción can</p>
-                        <a href="#" class="btn">Más información</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 col-lg-3 col-sm-6">
-                  <div class="card">
-                    <img class="card-img-top" src="img/nature-3042751.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Nombre Can</h5>
-                        <p class="card-text">Descripción can</p>
-                        <a href="#" class="btn">Más información</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 col-lg-3 col-sm-6">
-                  <div class="card">
-                    <img class="card-img-top" src="img/nature-3042751.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Nombre Can</h5>
-                        <p class="card-text">Descripción can</p>
-                        <a href="#" class="btn">Más información</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 col-lg-3 col-sm-6">
-                  <div class="card">
-                    <img class="card-img-top" src="img/nature-3042751.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Nombre Can</h5>
-                        <p class="card-text">Descripción can</p>
-                        <a href="#" class="btn">Más información</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 col-lg-3 col-sm-6">
-                  <div class="card">
-                    <img class="card-img-top" src="img/nature-3042751.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Nombre Can</h5>
-                        <p class="card-text">Descripción can</p>
-                        <a href="#" class="btn">Más información</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 col-lg-3 col-sm-6">
-                  <div class="card">
-                    <img class="card-img-top" src="img/nature-3042751.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Nombre Can</h5>
-                        <p class="card-text">Descripción can</p>
-                        <a href="#" class="btn">Más información</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 col-lg-3 col-sm-6">
-                  <div class="card">
-                    <img class="card-img-top" src="img/nature-3042751.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Nombre Can</h5>
-                        <p class="card-text">Descripción can</p>
-                        <a href="#" class="btn">Más información</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 col-lg-3 col-sm-6">
-                  <div class="card">
-                    <img class="card-img-top" src="img/nature-3042751.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Nombre Can</h5>
-                        <p class="card-text">Descripción can</p>
-                        <a href="#" class="btn">Más información</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 col-lg-3 col-sm-6">
-                  <div class="card">
-                    <img class="card-img-top" src="img/nature-3042751.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Nombre Can</h5>
-                        <p class="card-text">Descripción can</p>
-                        <a href="#" class="btn">Más información</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 col-lg-3 col-sm-6">
-                  <div class="card">
-                    <img class="card-img-top" src="img/nature-3042751.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Nombre Can</h5>
-                        <p class="card-text">Descripción can</p>
-                        <a href="#" class="btn">Más información</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 col-lg-3 col-sm-6">
-                  <div class="card">
-                    <img class="card-img-top" src="img/nature-3042751.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Nombre Can</h5>
-                        <p class="card-text">Descripción can</p>
-                        <a href="#" class="btn">Más información</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 col-lg-3 col-sm-6">
-                  <div class="card">
-                    <img class="card-img-top" src="img/nature-3042751.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Nombre Can</h5>
-                        <p class="card-text">Descripción can</p>
-                        <a href="#" class="btn">Más información</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 col-lg-3 col-sm-6">
-                  <div class="card">
-                    <img class="card-img-top" src="img/nature-3042751.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Nombre Can</h5>
-                        <p class="card-text">Descripción can</p>
-                        <a href="#" class="btn">Más información</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 col-lg-3 col-sm-6">
-                  <div class="card">
-                    <img class="card-img-top" src="img/nature-3042751.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Nombre Can</h5>
-                        <p class="card-text">Descripción can</p>
-                        <a href="#" class="btn">Más información</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 col-lg-3 col-sm-6">
-                  <div class="card">
-                    <img class="card-img-top" src="img/nature-3042751.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Nombre Can</h5>
-                        <p class="card-text">Descripción can</p>
-                        <a href="#" class="btn">Más información</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 col-lg-3 col-sm-6">
-                  <div class="card">
-                    <img class="card-img-top" src="img/nature-3042751.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Nombre Can</h5>
-                        <p class="card-text">Descripción can</p>
-                        <a href="#" class="btn">Más información</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 col-lg-3 col-sm-6">
-                  <div class="card">
-                    <img class="card-img-top" src="img/nature-3042751.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Nombre Can</h5>
-                        <p class="card-text">Descripción can</p>
-                        <a href="#" class="btn">Más información</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 col-lg-3 col-sm-6">
-                  <div class="card">
-                    <img class="card-img-top" src="img/nature-3042751.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Nombre Can</h5>
-                        <p class="card-text">Descripción can</p>
-                        <a href="#" class="btn">Más información</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 col-lg-3 col-sm-6">
-                  <div class="card">
-                    <img class="card-img-top" src="img/nature-3042751.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Nombre Can</h5>
-                        <p class="card-text">Descripción can</p>
-                        <a href="#" class="btn">Más información</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 col-lg-3 col-sm-6">
-                  <div class="card">
-                    <img class="card-img-top" src="img/nature-3042751.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Nombre Can</h5>
-                        <p class="card-text">Descripción can</p>
-                        <a href="#" class="btn">Más información</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 col-lg-3 col-sm-6">
-                  <div class="card">
-                    <img class="card-img-top" src="img/nature-3042751.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Nombre Can</h5>
-                        <p class="card-text">Descripción can</p>
-                        <a href="#" class="btn">Más información</a>
-                    </div>
-                  </div>
-                </div>
-
- 
- 
-     
-      
-              </div>
-
-
-
-
-
-
-
-
-
-
-
-          </div>
-            
-
-
-
-
-
-
-    </div>
+        </div>
   </main>
   <!--Main layout-->
-
-
-{% endblock %}
-
-{% block footer %}
-    <!--Footer-->
-    <footer class="page-footer font-small">
-        <!-- Social buttons -->
-        <div class="social-media">
-            <div class="container">
-                <!--Grid row-->
-                <div class="row py-4 d-flex align-items-center">
-                    <!--Grid column-->
-                    <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
-                        <h6 class="mb-0">Nuestras redes sociales</h6>
-                    </div>
-                    <!--Grid column-->
-                    <!--Grid column-->
-                    <div class="col-md-6 col-lg-7 text-center text-md-right">
-                        <!--Facebook-->
-                        <a class="mr-2">
-                            <i class="fab fa-facebook-f"></i> Facebook
-                        </a>
-                        <!--Instagram-->
-                        <a class="mr-2">
-                            <i class="fab fa-instagram"></i> Instagram
-                        </a>
-                        <!--Youtube-->
-                        <a class="mr-2">
-                            <i class="fab fa-youtube"></i> Youtube
-                        </a>
-                    </div>
-                    <!--Grid column-->
-                </div>
-                <!--Grid row-->
-            </div>
-        </div>
-        <!-- Social buttons -->
-
-        <!--Footer Links-->
-        <div class="container mt-4 mb-2 text-center text-md-left">
-            <div class="row mt-3">
-
-                <!--First column-->
-                <div class="col-md-3 col-lg-4 col-xl-3 mb-4">
-                    <h6 class="text-uppercase font-weight-bold">
-                        <strong><a href="/#inicio">
-                            <i class="fas fa-paw"></i> Rescate Canino
-                        </a></strong>
-                    </h6>
-                    <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                    <p>Un país, una civilización se puede juzgar por la forma en que trata a sus animales.</p>
-                </div>
-                <!--/.First column-->
-
-                <!--second column-->
-                <div class="col-md-4 col-lg-3 col-xl-3">
-                    <h6 class="text-uppercase font-weight-bold">
-                    <strong>Contacto</strong>
-                    </h6>
-                    <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                    <p>
-                    <i class="fa fa-home mr-3"></i>Quito, Alangasí</p>
-                    <p>
-                    <i class="fa fa-envelope mr-3"></i> rescateanimal@gmail.com</p>
-                    <p>
-                    <i class="fa fa-phone mr-3"></i> 022505682</p>
-                    <p>
-                    <i class="fa fa-print mr-3"></i> 022505682</p>
-                </div>
-                <!--/.second column-->
-    
-                <!--third column-->
-                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-                <h6 class="text-uppercase font-weight-bold">
-                    <strong>Menú Principal</strong>
-                </h6>
-                <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                <p>
-                    <a href="/#inicio">Inicio</a>
-                </p>
-                <p>
-                    <a href="/gallery">Galería</a>
-                </p>
-                <p>
-                    <a href="/#adopcion">Guía de adopción</a>
-                </p>
-                <p>
-                    <a href="/#about-us">Acerca de nosotros</a>
-                </p>
-                </div>
-                <!--/.third column-->
-            </div>
-        </div>
-        <!--/.Footer Links-->
-
-        <!-- Copyright -->
-        <div class="footer-copyright text-center py-3">© 2019 Copyright:
-            <a href="https://github.com/JosueOb" target="_blank"> JosueOb</a>
-        </div>
-        <!-- Copyright -->
-    </footer>
-    <!--/Footer-->
 {% endblock %}

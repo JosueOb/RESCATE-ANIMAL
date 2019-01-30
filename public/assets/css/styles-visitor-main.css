@@ -1,0 +1,122 @@
+/* 
+#menu{
+    background-color: #232f34;
+} */
+nav{
+    background-color: #232f34;
+}
+nav .container a{
+    color: #F9AA33 !important;
+
+}
+main {
+    margin-bottom: 5%;
+    margin-top: 95px;
+}
+
+main .container-fluid .content div[class^='col']{
+    padding: 0;
+}
+
+main .card{
+    background-color: #344955;
+    margin: 2.5%;
+}
+main .card .card-body{
+    padding:  5% 0;
+}
+main .card .card-body .card-title{
+    color:#F9AA33;
+    margin: 2.5% 0;
+}
+main .card .card-body .card-text{
+    color:white;
+    margin: 2.5% 0;
+}
+main .card .card-body .btn{
+    background-color: #232f34 ;
+    border-radius: 5%;
+    font-size: 10px;
+}
+main .card .card-body .btn:hover{
+    background-color: #F9AA33 ;
+}
+main .container-fluid .row .info {
+    background-color: #4a6572;
+    padding: 2%;
+    border-radius: 5px;
+}
+main .container-fluid .row .info h5{
+    color: #F9AA33;
+}
+main .container-fluid .row .info img{
+    width: 100%;
+    margin-top: 30%;
+}
+
+main .container-fluid .row .info .btn{
+    background-color: #F9AA33;
+    color: #232f34;
+}
+
+#page-navi {
+    margin: 5%;
+  }
+  
+  #page-navi li {
+    list-style: none;
+    display: inline;
+  }
+  
+  #page-navi li a {
+    float: left;
+    display: block;
+    padding: 8px 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    text-decoration: none;
+    background:#4a6572;
+    -webkit-transition: background 200ms linear;
+    transition: background 200ms linear;
+    border-radius: 3px;
+    color:white;
+  }
+  
+  #page-navi li:last-child a {
+    margin-right: 0px;
+  }
+
+  #page-navi li a.current,
+  #page-navi li a.disable,
+  #page-navi li a:hover {
+    background:#232f34;
+    color:#F9AA33;
+    border-bottom:3px solid #fff;
+  }
+  
+footer .social-media{
+    background-color: #F9AA33 ;
+    color: #232f34;
+}
+footer {
+    background-color: #232f34;
+}
+
+@media (max-width: 768px) {
+    .navbar:not(.top-nav-collapse) {
+        background-color: #232f34;
+    }
+    .navbar .container .navbar-brand .title{
+        display: none;
+    }
+    main .container-fluid .row .info img{
+        width: 100%;
+        margin-top:0;
+        /* padding: 5%; */
+    }
+}
+@media (min-width: 800px) and (max-width: 850px) {
+    .navbar:not(.top-nav-collapse) {
+        background-color: #232f34;
+    }
+}

@@ -10,5 +10,8 @@ class VisitorController extends BaseController{
     public function getVisitorIndex(){
         return $this->renderHTML('index.twig');
     }
+    public function getGalleryDog(){
+        return $this->renderHTML('galleryDog.twig');
+    }
 
 }

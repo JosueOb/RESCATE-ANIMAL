@@ -3,4 +3,11 @@ composer.lock
 .htaccess
 public/.htaccess
 public/assets/img
+public/assets/js/animatescroll.js
+public/assets/js/animatescroll.min.js
+public/assets/js/bootstrap.min.js
+public/assets/js/jquery-3.3.1.min.js
+public/assets/js/mdb.js
+public/assets/js/mdb.min.js
+public/assets/js/popper.min.js
 Script

@@ -49,137 +49,21 @@
                 </div>
                 <div class="content col-md-10">
                     <div class="row text-center contents">
+
+                        {% for dog in listDogs %}
                         <div class="col-md-4 col-lg-3 col-sm-6">
                             <div class="card">
-                                <img class="card-img-top" src="../assets/img/others/hero.jpg" alt="Card image cap">
+                                <img class="card-img-top" src="../assets/img/dogs/{{dog.dogPhoto}}" alt="Card image cap">
                                 <div class="card-body">
-                                    <h5 class="card-title">Nombre Can</h5>
-                                    <p class="card-text">Descripción can</p>
+                                    <h5 class="card-title">{{dog.dogName}}</h5>
+                                    <p class="card-text">{{dog.dogDescription}}</p>
                                     <a href="#" class="btn">Más información</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 col-lg-3 col-sm-6">
-                            <div class="card">
-                                <img class="card-img-top" src="../assets/img/others/hero.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Nombre Can</h5>
-                                    <p class="card-text">Descripción can</p>
-                                    <a href="#" class="btn">Más información</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-lg-3 col-sm-6">
-                            <div class="card">
-                                <img class="card-img-top" src="../assets/img/others/hero.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Nombre Can</h5>
-                                    <p class="card-text">Descripción can</p>
-                                    <a href="#" class="btn">Más información</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-lg-3 col-sm-6">
-                            <div class="card">
-                                <img class="card-img-top" src="../assets/img/others/hero.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Nombre Can</h5>
-                                    <p class="card-text">Descripción can</p>
-                                    <a href="#" class="btn">Más información</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-lg-3 col-sm-6">
-                            <div class="card">
-                                <img class="card-img-top" src="../assets/img/others/hero.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Nombre Can</h5>
-                                    <p class="card-text">Descripción can</p>
-                                    <a href="#" class="btn">Más información</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-lg-3 col-sm-6">
-                            <div class="card">
-                                <img class="card-img-top" src="../assets/img/others/hero.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Nombre Can</h5>
-                                    <p class="card-text">Descripción can</p>
-                                    <a href="#" class="btn">Más información</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-lg-3 col-sm-6">
-                            <div class="card">
-                                <img class="card-img-top" src="../assets/img/others/hero.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Nombre Can</h5>
-                                    <p class="card-text">Descripción can</p>
-                                    <a href="#" class="btn">Más información</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-lg-3 col-sm-6">
-                            <div class="card">
-                                <img class="card-img-top" src="../assets/img/others/hero.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Nombre Can</h5>
-                                    <p class="card-text">Descripción can</p>
-                                    <a href="#" class="btn">Más información</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-lg-3 col-sm-6">
-                            <div class="card">
-                                <img class="card-img-top" src="../assets/img/others/hero.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Nombre Can</h5>
-                                    <p class="card-text">Descripción can</p>
-                                    <a href="#" class="btn">Más información</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-lg-3 col-sm-6">
-                            <div class="card">
-                                <img class="card-img-top" src="../assets/img/others/hero.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Nombre Can</h5>
-                                    <p class="card-text">Descripción can</p>
-                                    <a href="#" class="btn">Más información</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-lg-3 col-sm-6">
-                            <div class="card">
-                                <img class="card-img-top" src="../assets/img/others/hero.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Nombre Can</h5>
-                                    <p class="card-text">Descripción can</p>
-                                    <a href="#" class="btn">Más información</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-lg-3 col-sm-6">
-                            <div class="card">
-                                <img class="card-img-top" src="../assets/img/others/hero.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Nombre Can</h5>
-                                    <p class="card-text">Descripción can</p>
-                                    <a href="#" class="btn">Más información</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-lg-3 col-sm-6">
-                            <div class="card">
-                                <img class="card-img-top" src="../assets/img/others/hero.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Nombre Can</h5>
-                                    <p class="card-text">Descripción can</p>
-                                    <a href="#" class="btn">Más información</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>  
+                        {% endfor %}
+                        
+                    </div>
                 </div>
             </div>
         </div>

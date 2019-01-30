@@ -10,13 +10,14 @@ class VisitorController extends BaseController{
     }
     public function getVisitorIndex(){
         $firstFiveDog = Dog::where('dogStatus','En adopción')->orderBy('dogId', 'desc')->take(5)->get();
-        // var_dump($firstFiveDog);
-        // die;
         return $this->renderHTML('index.twig',[
             'firstFiveDog'=>$firstFiveDog
         ]);
     }
     public function getGalleryDog(){
-        return $this->renderHTML('galleryDog.twig');
+        $listDogs = Dog::where('dogStatus','En adopción')->get();
+        return $this->renderHTML('galleryDog.twig',[
+            'listDogs'=>$listDogs
+        ]);
     }
 }

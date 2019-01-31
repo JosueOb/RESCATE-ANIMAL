@@ -72,7 +72,7 @@
                     </div>
                     <div class="row ">
                         <div class="col-md-6 offset-md-2" >
-                            <a class="btn btn-block font-weight-bold " data-toggle="modal" data-target="#adoptarCorreo">Adoptar</a>
+                            <a class="btn btn-block font-weight-bold " href='/#contactanos'>Adoptar</a>
                         </div>
                         <div class="col-md-4 offset-md-3" >
                             <a href="/gallery" class="btn btn-dark btn-block btn-sm mt-2">Volver a Galería</a>
@@ -84,51 +84,9 @@
     </main>
     <!--Main layout-->
 
-    <!-- Modal -->
-    <div class="modal fade" id="adoptarCorreo" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Adoptar a {{dogInfo.dogName}}</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <!-- Form contact -->
-            <form class="p-2">
-                <div class="md-form form-sm"> <i class="fa fa-user prefix"></i>
-                    <input type="text" id="form3" class="form-control form-control-sm">
-                    <label for="form3">Nombre</label>
-                </div>
-                <div class="md-form form-sm"> <i class="fa fa-envelope prefix"></i>
-                    <input type="text" id="form2" class="form-control form-control-sm">
-                    <label for="form2">Correo</label>
-                </div>
-                <div class="md-form form-sm"> <i class="fa fa-tag prefix"></i>
-                    <input type="text" id="form32" class="form-control form-control-sm">
-                    <label for="form32">Asunto</label>
-                </div>
-                <div class="md-form form-sm"> <i class="fa fa-pencil prefix"></i>
-                    <textarea type="text" id="form8" class="md-textarea form-control form-control-sm" rows="4"></textarea>
-                    <label for="form8">Mensaje</label>
-                </div>
-                <div class="text-center mt-4">
-                    <button class="btn btn-primary">Enviar<i class="fa fa-paper-plane-o ml-1"></i></button>
-                </div>
-            </form>
-            <!-- Form contact -->
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-        </div>
-        </div>
-    </div>
-    </div>
-   <!-- Modal -->
-
 {% endblock %}
 {% block scripts %}
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="../../assets/js/mdb.js"></script>
+<script type="text/javascript" src="../../assets/js/form-contact.js"></script>
 {% endblock %}

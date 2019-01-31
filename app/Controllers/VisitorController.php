@@ -1,6 +1,9 @@
 <?php
 namespace App\Controllers;
 use App\Models\Dog;
+use Swift_Mailer;
+use Swift_Message;
+use Swift_SmtpTransport;
 
 class VisitorController extends BaseController{
     
@@ -136,8 +139,6 @@ class VisitorController extends BaseController{
                     $listDogs = $filtroResultado;
                     $responseMessage= 'Mostrando '.$listDogs->count().' resultados';
                 }
-                // var_dump($filtroCiudad);
-                // var_dump($filtroCiudad->count());
             }
         }
         return $this->renderHTML('galleryDog.twig',[
@@ -155,39 +156,41 @@ class VisitorController extends BaseController{
             'dogInfo'=>$dogInfo
         ]);
     }
-    // public function Buscador($opcionesFiltro){
-    //     $listDogs = Dog::where('dogStatus','En adopción')->get();
+    public function enviarCorreo($request){
+        $postData = $request->getParsedBody();
+        $visitorNombre = $postData['nombre'];
+        $visitorCorreo = $postData['correo'];
+        $visitorAsunto = $postData['asunto'];
+        $visitorMensaje = $postData['mensaje'];
+        // var_dump($postData);
+        // die;
 
-    //     $filtroGenero = $listDogs->filter(
-    //         function($obj){
-    //             return $obj->dogGender == 'Hemba';
-    //         }
-    //     );
-    //     $filtroGenero->all();
-        
-    //     if(!empty($filtroGenero)){
-    //         echo 'Tiene valores<br>';
-    //     }else{
-    //         echo 'No tiene valores<br>';
+        //  Create the Transport
+        $transport = (new Swift_SmtpTransport(getenv('SMTP_HOST'),getenv('SMTP_PORT'),'ssl'))
+        ->setUsername(getenv('SMTP_USER'))
+        ->setPassword(getenv('SMTP_PASS'));
 
-    //     }
-    //     var_dump($filtroGenero);
-    //     var_dump($filtroGenero->count());
+        // Create the Mailer using your created Transport
+        $mailer = new Swift_Mailer($transport);
 
+        // Create a message
+        $message = (new Swift_Message($visitorAsunto))
+        ->setFrom([$visitorCorreo=> $visitorNombre])
+        ->setTo(['josuericardocando@gmail.com' => 'Rescate Animal'])
+        ->setBody('Nombre: '.$visitorNombre.'<br>'.
+                'Correo: '.$visitorCorreo.'<br>'.
+                'Asunto: '.$visitorAsunto.'<br>'.
+                'Mensaje: '.$visitorMensaje,'text/html');
 
+        // Send the message
+        $result = $mailer->send($message);
 
-    //     // foreach ($opcionesFiltro as $indice => $valor) {
-    //     //     if(!empty($valor)){
-    //     //         $filtro = $listDogs->filter(function($obj){
-    //     //             return $obj->dogAge == 'Adulto' ;
-    //     //         });
-    //     //         $filtro->all();
-    //     //     }
-    //     // }
-    //     // var_dump($filtro);
-    //     // var_dump($filtro->count());
+        $responseMessage = 'Mensaje Enviado';
 
-
-
-    // }
+        $firstFiveDog = Dog::where('dogStatus','En adopción')->orderBy('dogId', 'desc')->take(5)->get();
+        return $this->renderHTML('index.twig',[
+            'firstFiveDog'=>$firstFiveDog,
+            'responseMessage'=>$responseMessage
+        ]);
+    }
 }

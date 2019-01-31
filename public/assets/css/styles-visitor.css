@@ -117,7 +117,19 @@ footer .social-media{
 footer {
     background-color: #232f34;
 }
-
+#contactanos .row form .error{
+    display: block;
+    /* margin-left: 50px; */
+    /* float:right; */
+    /* border: solid red 1px; */
+    color: red;
+}
+#correo-error,
+#nombre-error,
+#asunto-error,
+#mensaje-error{
+    margin-left:22%;
+}
 @media (max-width: 768px) {
     .navbar:not(.top-nav-collapse) {
         background-color: #232f34;

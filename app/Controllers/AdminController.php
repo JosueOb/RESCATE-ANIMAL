@@ -79,7 +79,7 @@ class AdminController extends BaseController{
                     $mailer = new Swift_Mailer($transport);
 
                     // Create a message
-                    $message = (new Swift_Message('Contrasenia'))
+                    $message = (new Swift_Message('Activación de Cuenta'))
                     ->setFrom(['rescatecanino@gmail.com' => 'Rescate Canino'])
                     ->setTo([$userCorreo => $userNombre])
                     ->setBody(

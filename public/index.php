@@ -52,7 +52,11 @@ $map = $routerContainer->getMap();
 $map->get('visitorIndex','/',[
     'controller'=>'App\Controllers\VisitorController',
     'action'=>'getVisitorIndex'
-    ]);
+]);
+$map->post('postEmail','/',[
+    'controller'=>'App\Controllers\VisitorController',
+    'action'=>'enviarCorreo'
+]);
 $map->get('getGalleryDog','/gallery',[
     'controller'=>'App\Controllers\VisitorController',
     'action'=>'getGalleryDog'

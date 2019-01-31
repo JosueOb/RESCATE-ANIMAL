@@ -93,7 +93,7 @@ class AdminController extends BaseController{
                         '<br>'.
                         'Contraseña: '.$userContrasenia.
                         '<br>'.
-                        'Recuerde que su contraseña la puede cambiar ingresando al sistema','text/html');
+                        'Recuerde que su contraseña la puede cambiar ingresando al sistema.','text/html');
 
                     // Send the message
                     $result = $mailer->send($message);
@@ -234,6 +234,34 @@ class AdminController extends BaseController{
                     $userValidator->assert($postData);
                     $user->userPassword = \password_hash($userContrasenia,PASSWORD_DEFAULT);
                     $user->save();
+
+                    // Create the Transport
+                    $transport = (new Swift_SmtpTransport(getenv('SMTP_HOST'),getenv('SMTP_PORT'),'ssl'))
+                    ->setUsername(getenv('SMTP_USER'))
+                    ->setPassword(getenv('SMTP_PASS'));
+
+                    // Create the Mailer using your created Transport
+                    $mailer = new Swift_Mailer($transport);
+
+                    // Create a message
+                    $message = (new Swift_Message('Cambio de contraseña'))
+                    ->setFrom(['rescatecanino@gmail.com' => 'Rescate Canino'])
+                    ->setTo([$user->userEmail => $user->userName])
+                    ->setBody(
+                        'Rescate Canino'.
+                        '<br>'.
+                        'Usuario '.$user->userName.' '.$user->userApellido.
+                        '<br>'.
+                        'Estas son tus nuevas credenciales'.
+                        '<br>'.
+                        'Correo: '.$user->userEmail.
+                        '<br>'.
+                        'Contraseña: '.$userContrasenia.
+                        '<br>'.
+                        'Recuerde que su contraseña la puede cambiar ingresando al sistema.','text/html');
+
+                    // Send the message
+                    $result = $mailer->send($message);
                     $responseMessage='Cambio de contraseña exitoso';
                     
                 } catch (NestedValidationException $exception) {

@@ -4,6 +4,9 @@ namespace App\Controllers;
 use App\Models\User;
 use Respect\Validation\Validator as v;
 use Respect\Validation\Exceptions\NestedValidationException;
+use Swift_Mailer;
+use Swift_Message;
+use Swift_SmtpTransport;
 
 class AdminController extends BaseController{
     // protected $viewPath='../views/admin';
@@ -66,6 +69,35 @@ class AdminController extends BaseController{
                     $user->userStatus = true;
                     $user->userType = 'User';
                     $user->save();
+
+                    // Create the Transport
+                    $transport = (new Swift_SmtpTransport(getenv('SMTP_HOST'),getenv('SMTP_PORT'),'ssl'))
+                    ->setUsername(getenv('SMTP_USER'))
+                    ->setPassword(getenv('SMTP_PASS'));
+
+                    // Create the Mailer using your created Transport
+                    $mailer = new Swift_Mailer($transport);
+
+                    // Create a message
+                    $message = (new Swift_Message('Contrasenia'))
+                    ->setFrom(['rescatecanino@gmail.com' => 'Rescate Canino'])
+                    ->setTo([$userCorreo => $userNombre])
+                    ->setBody(
+                        'Rescate Canino'.
+                        '<br>'.
+                        'Binvenido '.$userNombre.' '.$userApellido.
+                        '<br>'.
+                        'Estas son tus credenciales para el ingreso al sistema online de Rescare Canino'.
+                        '<br>'.
+                        'Correo: '.$userCorreo.
+                        '<br>'.
+                        'Contraseña: '.$userContrasenia.
+                        '<br>'.
+                        'Recuerde que su contraseña la puede cambiar ingresando al sistema','text/html');
+
+                    // Send the message
+                    $result = $mailer->send($message);
+
                     $responseMessage = 'Usuario Registrado exitosamente';
                     
                 } catch (NestedValidationException $exception) {

@@ -25,7 +25,7 @@
                 {% block imgUser %}<img src="../assets/img/users/{{user.userPhoto}}" alt="">{% endblock %}
                 <h3>User Dashboard</h3>
                 <h4>Bienvenido {{user.userName}}</h4>
-                <a href="/perfil" class='btn btn-outline-info btn-sm'>Editar Perfil</a>
+                <a href="/perfil" class='btn btn-outline-info btn-sm'> <i class="fas fa-user-edit"></i> Editar Perfil</a>
             </div>
 
             <ul class="list-unstyled components">
@@ -34,13 +34,13 @@
                 <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-list-ul"></i> Listar Canes</a>
                 <ul class="collapse list-unstyled" id="pageSubmenu">
                     <li>
-                        <a href="/user">En adopción</a>
+                        <a href="/user"><i class="far fa-circle"></i></i> En adopción</a>
                     </li>
                     <li>
-                        <a href="/dog/adopted">Adoptados</a>
+                        <a href="/dog/adopted"><i class="far fa-circle"></i></i> Adoptados</a>
                     </li>
                     <li>
-                        <a href="/dog/inactive">Inactivos</a>
+                        <a href="/dog/inactive"><i class="far fa-circle"></i></i> Inactivos</a>
                     </li>
                 </ul>
             </li>

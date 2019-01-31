@@ -76,6 +76,10 @@ nav .container a{
 #scrolling .card{
     background-color: #344955;
 }
+#scrolling .card  .card-img-top{
+    width: 100%;
+    height: 30vh;
+}
 #scrolling .card .card-body .card-title{
     color:#F9AA33;
 }
@@ -122,6 +126,10 @@ footer {
         /* border: solid red 1px; */
         width: 100%;
         height: auto;
+    }
+    #scrolling .card  .card-img-top{
+        width: 100%;
+        height: 25vh;
     }
 }
 @media (min-width: 800px) and (max-width: 850px) {

@@ -17,10 +17,10 @@ class VisitorController extends BaseController{
     public function getGalleryDog($request){
         $listDogs = Dog::where('dogStatus','En adopción')->get();
         $errorsMessage = null;
+        $errorsMessage=null;
+        $responseMessage=null;
 
         if($request->getMethod() == 'POST'){
-            $errorsMessage=null;
-            $responseMessage=null;
             $postData = $request->getParsedBody();
             $dogGenero = $postData['dogGenero'];
             $dogEdad = $postData['dogEdad'];
@@ -134,7 +134,7 @@ class VisitorController extends BaseController{
                     $listDogs = null;
                 }else{
                     $listDogs = $filtroResultado;
-                    $responseMessage= 'Resultados encontrados: '.$listDogs->count();
+                    $responseMessage= 'Mostrando '.$listDogs->count().' resultados';
                 }
                 // var_dump($filtroCiudad);
                 // var_dump($filtroCiudad->count());

@@ -28,7 +28,7 @@ $(document).ready(function(){
             dogDescripcion:{
                 required:true,
                 minlength:50,
-                maxlength:255
+                maxlength:145
             }
         },
         messages:{
@@ -56,7 +56,7 @@ $(document).ready(function(){
             dogDescripcion:{
                 required:'* Ingrese una descripción',
                 minlength:'* Mínimo 50 caracteres',
-                maxlength:'* Máximo 255 caracteres'
+                maxlength:'* Máximo 145 caracteres'
             }
         },
         submitHandler:function(form){

@@ -1,7 +1,7 @@
 $(document).ready(function()
    {
      $("#tab").pagination({
-     items: 8,
+     items: 6,
      contents: 'contents',
      previous: 'Anterior',
      next: 'Siguiente',

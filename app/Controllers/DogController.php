@@ -102,7 +102,8 @@ class DogController extends BaseController{
             if($request->getMethod() == 'POST'){
                 $postData = $request->getParsedBody();
                 $files = $request->getUploadedFiles();
-                $dogImagenName = \strtolower($files['dogFoto']->getClientFilename());
+                $dogFoto = $files['dogFoto'];
+                $dogImagenName = \strtolower($dogFoto->getClientFilename());
 
 
                 if(empty($dogImagenName)){
@@ -138,6 +139,9 @@ class DogController extends BaseController{
                         $dogValidator->assert($postData);
                         $fotoValidator->assert($dogImagenName);
 
+                        if($dogFoto->getError() == UPLOAD_ERR_OK){
+                            $dogFoto->moveTo("assets/img/dogs/$dogImagenName");
+                        }
                         $dogUpdate->dogName = $postData['dogNombre'];
                         $dogUpdate->dogGender = $postData['dogGenero'];
                         $dogUpdate->dogAge = $postData['dogEdad'];

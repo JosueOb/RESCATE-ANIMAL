@@ -1,13 +1,18 @@
 {% extends "layoutCustom.twig" %}
+{% block styles %} 
+    <!-- Material Design Bootstrap -->
+    <link href="../../assets/css/mdb.min.css" rel="stylesheet">
+    <!--Custom CSS-->
+    <link rel="stylesheet" href="../../assets/css/styles-visitor-main.css">
+{% endblock %}
 {% block content %}
-<!--Main layout-->
+    <!--Main layout-->
     <main>
         <div class="container-fluid">
-            <h2 class="mb-5 font-weight-bold text-center">Galería de adopción</h2>
+            <h2 class="mb-5 font-weight-bold text-center">Informacíon del Can</h2>
             <div class="row">
                 <div class="col-md-2">
                     <h4 class="text-center font-weight-bold">Filtros</h4>
-                    
                     <form action='/gallery' id='formulario' autocomplete="off" method='POST'>
                         <div class="form-row">
                             <div class="form-group col-md-12">
@@ -48,34 +53,32 @@
                         <button type="submit" class="btn btn-dark btn-lg btn-block mt-3">Buscar</button>
                     </form>
                 </div>
-                <div class="content col-md-10">
-                    {% if errorsMessage %}
-                        <div class="alert alert-danger" role="alert" style=''>
-                            {{ errorsMessage }}
+                <div class="info col-md-10">
+                    <div class="row ">
+                        <div class="col-md-4">
+                            <img src="../../assets/img/dogs/{{dogInfo.dogPhoto}}"  alt="{{dogInfo.dogPhoto}}">
                         </div>
-                    {% endif %}
-                    {% if responseMessage %}
-                            <p>{{ responseMessage }}</p>
-                    {% endif %}
-                    <div class="row text-center contents">
-
-                        {% for dog in listDogs %}
-                        <div class="col-md-4 col-lg-3 col-sm-6">
-                            <div class="card">
-                                <img class="card-img-top" src="../assets/img/dogs/{{dog.dogPhoto}}" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{dog.dogName}}</h5>
-                                    <p class="card-text">{{dog.dogDescription}}</p>
-                                    <a href="/dog/info/{{dog.dogId}}" class="btn">Más información</a>
-                                </div>
-                            </div>
+                        <div class="col-md-8">
+                            <h4 class="mt-0 text-white font-weight-bold mb-3">{{dogInfo.dogName}}</h4>
+                            <h5 class="mt-0">Edad</h5>
+                            <p>{{dogInfo.dogAge}}</p>
+                            <h5 class="mt-0">Tamaño</h5>
+                            <p>{{dogInfo.dogSize}}</p>
+                            <h5 class="mt-0">Ciudad</h5>
+                            <p>{{dogInfo.dogCity}}</p>
+                            <h5 class="mt-0">Descripción</h5>
+                            <p>{{dogInfo.dogDescription}}</p>
                         </div>
-                        {% endfor %}
-                        
                     </div>
+                    <a href="gallery.html" class="btn btn-block font-weight-bold ">Adoptar</a>
+                    <a href="/gallery" class="btn btn-dark btn-block btn-sm mt-2">Volver a Galería</a>
                 </div>
             </div>
         </div>
-  </main>
-  <!--Main layout-->
+    </main>
+    <!--Main layout-->
+{% endblock %}
+{% block scripts %}
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="../../assets/js/mdb.js"></script>
 {% endblock %}

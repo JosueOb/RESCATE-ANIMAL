@@ -54,6 +54,15 @@ $map->get('getGalleryDog','/gallery',[
     'controller'=>'App\Controllers\VisitorController',
     'action'=>'getGalleryDog'
 ]);
+$map->post('postGalleryDog','/gallery',[
+    'controller'=>'App\Controllers\VisitorController',
+    'action'=>'getGalleryDog'
+]);
+$map->get('getDogInfo','/dog/info/{dogId}',[
+    'controller'=>'App\Controllers\VisitorController',
+    'action'=>'getDogInfo'
+]);
+
 
 
 // Rutas del administrador

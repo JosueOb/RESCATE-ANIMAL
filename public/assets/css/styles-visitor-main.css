@@ -23,7 +23,7 @@ main .card{
     margin: 2.5%;
 }
 main .card .card-body{
-    padding:  5% 0;
+    padding:  5% 2.5%;
 }
 main .card .card-body .card-title{
     color:#F9AA33;
@@ -51,12 +51,17 @@ main .container-fluid .row .info h5{
 }
 main .container-fluid .row .info img{
     width: 100%;
-    margin-top: 30%;
+    margin-top: 10%;
 }
 
 main .container-fluid .row .info .btn{
     background-color: #F9AA33;
     color: #232f34;
+}
+
+main .container-fluid .row .info .btn:hover{
+    background-color: #232f34 ;
+    color:white;
 }
 
 #page-navi {

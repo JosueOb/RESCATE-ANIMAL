@@ -1,5 +1,7 @@
 {% extends "layoutMain.twig" %}
 {% block styles %}
+    <!-- Material Design Bootstrap -->
+    <link href="../assets/css/mdb.min.css" rel="stylesheet">
     <!--Custom CSS-->
     <link rel="stylesheet" href="../assets/css/styles-visitor.css">
 {% endblock %}
@@ -152,7 +154,7 @@
                                     <div class="card-body">
                                         <h5 class="card-title">{{dog.dogName}}</h5>
                                         <p class="card-text">{{dog.dogDescription}}</p>
-                                        <a href="#" class="btn">Más información</a>
+                                        <a href="/dog/info/{{dog.dogId}}" class="btn">Más información</a>
                                     </div>
                                 </div>
                             </li>
